@@ -1,7 +1,6 @@
 package com.ingsw.conectamente.service.impl;
 
 
-import com.ingsw.conectamente.model.entity.Paciente;
 import com.ingsw.conectamente.model.entity.Psicologo;
 import com.ingsw.conectamente.model.entity.Usuario;
 import com.ingsw.conectamente.repository.PsicologoRepository;
@@ -31,7 +30,9 @@ public class PsicologoServiceImpl implements PsicologoService {
     @Override
     public Psicologo update(Integer id, Psicologo updatedPsicologo) {
         Psicologo psicologoFromDb = findById(id);
+        psicologoFromDb.setDisponibilidad(updatedPsicologo.getDisponibilidad());
         psicologoFromDb.setDescripcion(updatedPsicologo.getDescripcion());
+        psicologoFromDb.setTarifa(updatedPsicologo.getTarifa());
 
         Usuario usuarioFromDb = psicologoFromDb.getUsuario_idUsuario();
         Usuario updatedUsuario = updatedPsicologo.getUsuario_idUsuario();
