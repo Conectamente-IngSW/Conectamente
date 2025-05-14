@@ -19,4 +19,5 @@ public class Paciente {
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario",
             foreignKey = @ForeignKey(name = "Usuario_idUsuario" ))
     private Usuario Usuario_idUsuario;
+
 }
