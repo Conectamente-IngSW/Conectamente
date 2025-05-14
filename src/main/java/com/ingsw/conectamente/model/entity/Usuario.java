@@ -33,4 +33,10 @@ public class Usuario {
     @JoinColumn(name = "idDireccion", referencedColumnName = "idDireccion",
     foreignKey = @ForeignKey(name = "Direccion_idDireccion" ))
     private Direccion Direccion_idDireccion;
+
+    @OneToOne
+    private Paciente paciente;
+
+    @OneToOne
+    private Psicologo psicologo;
 }

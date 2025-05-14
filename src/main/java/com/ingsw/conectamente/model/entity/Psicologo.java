@@ -23,7 +23,7 @@ public class Psicologo
     private Float tarifa;
 
     //FK
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario",
             foreignKey = @ForeignKey(name = "Usuario_idUsuario" ))
     private Usuario Usuario_idUsuario;
