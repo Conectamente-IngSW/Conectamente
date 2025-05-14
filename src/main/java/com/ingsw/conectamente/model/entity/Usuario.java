@@ -1,5 +1,6 @@
 package com.ingsw.conectamente.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -34,9 +35,4 @@ public class Usuario {
     foreignKey = @ForeignKey(name = "Direccion_idDireccion" ))
     private Direccion Direccion_idDireccion;
 
-    @OneToOne
-    private Paciente paciente;
-
-    @OneToOne
-    private Psicologo psicologo;
 }

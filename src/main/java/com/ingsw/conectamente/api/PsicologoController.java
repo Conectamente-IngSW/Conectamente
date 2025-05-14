@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/psicologo")
-public class PsicologoControlador {
+public class PsicologoController {
 
     private final PsicologoService psicologoService;
 

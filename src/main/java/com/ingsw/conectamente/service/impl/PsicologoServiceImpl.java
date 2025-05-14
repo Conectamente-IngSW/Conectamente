@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PsicologoServiceImpl implements PsicologoService {
@@ -57,5 +59,10 @@ public class PsicologoServiceImpl implements PsicologoService {
         }
 
         return psicologoRepository.save(psicologoFromDb);
+    }
+
+    @Override
+    public List<Psicologo> findAll() {
+        return psicologoRepository.findAll();
     }
 }
