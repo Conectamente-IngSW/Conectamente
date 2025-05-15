@@ -28,12 +28,12 @@ public class Mensaje {
     @ManyToOne
     @JoinColumn(name = "idPsicologo", referencedColumnName = "idPsicologo",
             foreignKey = @ForeignKey(name = "Psicologo_idPsicologo" ))
-    private Direccion Psicologo_idPsicologo;
+    private Psicologo Psicologo_idPsicologo;
 
     @ManyToOne
     @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente",
             foreignKey = @ForeignKey(name = "Paciente_idPaciente" ))
-    private Direccion Paciente_idPaciente;
+    private Paciente Paciente_idPaciente;
 
 
 }
