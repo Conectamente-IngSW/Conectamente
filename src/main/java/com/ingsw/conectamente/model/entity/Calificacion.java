@@ -17,7 +17,6 @@ public class Calificacion {
 
     @Column(columnDefinition = "TEXT")
     private String comentario;
-
     private LocalDateTime fecha;
 
     //FK
