@@ -4,6 +4,8 @@ import com.ingsw.conectamente.enums.Especialidad;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.awt.*;
+
 @Data
 @Entity
 @Table(name = "Psicologo")
@@ -30,4 +32,5 @@ public class Psicologo
 
     @Enumerated(EnumType.STRING)
     private Especialidad especialidad;
+
 }
