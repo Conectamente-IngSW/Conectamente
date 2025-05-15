@@ -30,4 +30,13 @@ public class CalificacionController {
         return new ResponseEntity<Calificacion>(calificacion, HttpStatus.OK);
     }
 
+    @GetMapping("/psicologo/{idPsicologo}")
+    public ResponseEntity<List<Calificacion>> getCalificacionesByPsicologo(@PathVariable Integer idPsicologo) {
+        List<Calificacion> calificaciones = calificacionService.findCalificacionesByPsicologoId(idPsicologo);
+        if (calificaciones.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(calificaciones);
+    }
+
 }

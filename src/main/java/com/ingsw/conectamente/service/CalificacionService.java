@@ -9,5 +9,6 @@ import java.util.List;
 public interface CalificacionService {
     Calificacion createCalificacion(Calificacion calificacion);
     Calificacion findCalificacionById(Integer id);
+    List<Calificacion> findCalificacionesByPsicologoId(Integer idPsicologo);
 
 }

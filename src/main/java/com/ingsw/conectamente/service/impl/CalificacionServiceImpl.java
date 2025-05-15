@@ -26,4 +26,10 @@ public class CalificacionServiceImpl implements CalificacionService {
                 .orElseThrow(() -> new RuntimeException("No se encontro el calificacion con el id: " + id));
     }
 
+    // Implementación del nuevo metodo
+    @Override
+    public List<Calificacion> findCalificacionesByPsicologoId(Integer idPsicologo) {
+        return calificacionRepository.findByPsicologoIdPsicologo(idPsicologo);
+    }
+
 }
