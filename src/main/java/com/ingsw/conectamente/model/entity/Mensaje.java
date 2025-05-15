@@ -24,4 +24,16 @@ public class Mensaje {
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario",
             foreignKey = @ForeignKey(name = "Usuario_idUsuario" ))
     private Usuario Usuario_idUsuario;
+
+    @ManyToOne
+    @JoinColumn(name = "idPsicologo", referencedColumnName = "idPsicologo",
+            foreignKey = @ForeignKey(name = "Psicologo_idPsicologo" ))
+    private Direccion Psicologo_idPsicologo;
+
+    @ManyToOne
+    @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente",
+            foreignKey = @ForeignKey(name = "Paciente_idPaciente" ))
+    private Direccion Paciente_idPaciente;
+
+
 }
