@@ -25,15 +25,14 @@ public class Mensaje {
             foreignKey = @ForeignKey(name = "Usuario_idUsuario" ))
     private Usuario Usuario_idUsuario;
 
-    @ManyToOne
-    @JoinColumn(name = "idPsicologo", referencedColumnName = "idPsicologo",
-            foreignKey = @ForeignKey(name = "Psicologo_idPsicologo" ))
-    private Psicologo Psicologo_idPsicologo;
-
+    //FK
     @ManyToOne
     @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente",
             foreignKey = @ForeignKey(name = "Paciente_idPaciente" ))
-    private Paciente Paciente_idPaciente;
+    private Paciente paciente;
 
-
+    @ManyToOne
+    @JoinColumn(name = "idPsicologo", referencedColumnName = "idPsicologo",
+            foreignKey = @ForeignKey(name = "Psicologo_idPsicologo" ))
+    private Psicologo psicologo;
 }
