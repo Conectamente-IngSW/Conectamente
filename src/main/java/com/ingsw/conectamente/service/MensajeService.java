@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface MensajeService {
     Mensaje createMensaje(Mensaje mensaje);
-    List<Mensaje> findMensajeById(Integer id);
+    List<Mensaje> findMensajeByPsicologoId(Integer idPsicologo);
+    List<Mensaje> findMensajeByPacienteId(Integer idPaciente);
 
 }

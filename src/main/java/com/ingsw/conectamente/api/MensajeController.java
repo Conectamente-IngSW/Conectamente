@@ -24,5 +24,24 @@ public class MensajeController {
         return new ResponseEntity<Mensaje>(createdMensaje, HttpStatus.CREATED);
     }
 
+    @GetMapping("/psicologo/{idPsicologo}")
+    public ResponseEntity<List<Mensaje>> getCalificacionesByPsicologo(@PathVariable Integer idPsicologo) {
+        List<Mensaje> mensajes = mensajeService.findMensajeByPsicologoId(idPsicologo);
+        if (mensajes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(mensajes);
+    }
+
+    @GetMapping("/paciente/{idPaciente}")
+    public ResponseEntity<List<Mensaje>> getCalificacionesByPaciente(@PathVariable Integer idPaciente) {
+        List<Mensaje> mensajes = mensajeService.findMensajeByPsicologoId(idPaciente);
+        if (mensajes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(mensajes);
+    }
+
+
 
 }

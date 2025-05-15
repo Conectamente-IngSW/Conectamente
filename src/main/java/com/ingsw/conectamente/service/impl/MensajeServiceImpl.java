@@ -20,5 +20,15 @@ public class MensajeServiceImpl implements MensajeService {
         return mensajeRepository.save(mensaje);
     }
 
+    @Override
+    public List<Mensaje> findMensajeByPsicologoId(Integer idPsicologo) {
+        return mensajeRepository.findByPsicologoIdPsicologo(idPsicologo);
+    }
+
+    @Override
+    public List<Mensaje> findMensajeByPacienteId(Integer idPaciente) {
+        return mensajeRepository.findByPsicologoIdPsicologo(idPaciente);
+    }
+
 
 }
