@@ -1,6 +1,7 @@
 package com.ingsw.conectamente.model.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import lombok.Data;
 

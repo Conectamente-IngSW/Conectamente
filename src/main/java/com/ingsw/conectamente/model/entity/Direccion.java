@@ -1,8 +1,9 @@
 package com.ingsw.conectamente.model.entity;
 
-import com.ingsw.conectamente.model.enums.DepartamentoEnum;
-import com.ingsw.conectamente.model.enums.DistritoEnum;
+import com.ingsw.conectamente.enums.Departamento;
+import com.ingsw.conectamente.enums.Distrito;
 import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -20,10 +21,10 @@ public class Direccion {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "departamento", nullable = false, length = 50)
-    private DepartamentoEnum departamento;
+    private Departamento departamento;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "distrito", nullable = false, length = 50)
-    private DistritoEnum distrito;
+    private Distrito distrito;
 
 }
