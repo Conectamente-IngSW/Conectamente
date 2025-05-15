@@ -4,7 +4,11 @@ import com.ingsw.conectamente.model.entity.Mensaje;
 import com.ingsw.conectamente.repository.MensajeRepository;
 import com.ingsw.conectamente.service.MensajeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -15,4 +19,6 @@ public class MensajeServiceImpl implements MensajeService {
     public Mensaje createMensaje(Mensaje mensaje) {
         return mensajeRepository.save(mensaje);
     }
+
+
 }
