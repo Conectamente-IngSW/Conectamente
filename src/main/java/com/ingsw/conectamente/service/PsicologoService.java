@@ -1,12 +1,22 @@
 package com.ingsw.conectamente.service;
 
+import com.ingsw.conectamente.dto.PsicologoDTO;
+import com.ingsw.conectamente.enums.Especialidad;
 import com.ingsw.conectamente.model.entity.Psicologo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface PsicologoService {
-    Psicologo create(Psicologo psicologo);
-    Psicologo findById(Integer id);
-    Psicologo update(Integer id, Psicologo updatedPsicologo);
-    List<Psicologo> findAll();
+    List<PsicologoDTO> findAll();
+    List<PsicologoDTO> getAll();
+    Page<PsicologoDTO> getAll(Pageable pageable);
+    PsicologoDTO create(PsicologoDTO psicologoDTO);
+    Page<PsicologoDTO> paginate(Pageable pageable);
+    PsicologoDTO findById(Integer id);
+    PsicologoDTO update(Integer id, PsicologoDTO updatePsicologoDTO);
+    List<Psicologo> buscarPorFiltros(Especialidad especialidad, String disponibilidad, Float minTarifa, Float maxTarifa);
+    void delete(Integer id);
 }
