@@ -62,4 +62,10 @@ public class PsicologoController {
     ) {
         return psicologoService.buscarPorFiltros(especialidad, disponibilidad, minTarifa, maxTarifa);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PsicologoDTO> getPerfil(@PathVariable Integer id) {
+        PsicologoDTO dto = psicologoService.findById(id);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
 }

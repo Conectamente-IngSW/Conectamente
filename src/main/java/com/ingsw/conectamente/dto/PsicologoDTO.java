@@ -25,4 +25,8 @@ public class PsicologoDTO {
 
     @NotBlank(message = "La especialidad es requerida")
     private Especialidad especialidad;
+
+    private String nombre;
+    private String apellido;
+
 }
