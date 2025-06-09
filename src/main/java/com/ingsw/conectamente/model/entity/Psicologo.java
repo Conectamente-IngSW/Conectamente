@@ -15,13 +15,26 @@ public class Psicologo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPsicologo;
+
+    @Column(nullable = false)
+    private String nombrePsicologo;
+
+    @Column(nullable = false)
+    private String apellidoPsicologo;
+
+    @Column(nullable = false)
+    private String dniPsicologo;
+
+    @Column(nullable = false)
+    private Integer edadPsicologo;
+
     @Column(nullable = false)
     private String numColegiatura;
 
     private String disponibilidad;
 
     @Column(columnDefinition = "TEXT")
-    private String descripcion;
+    private String descripcionPsicologo;
 
     private Float tarifa;
 
@@ -30,12 +43,17 @@ public class Psicologo {
     private LocalDateTime updatedAt;
 
     //FK
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario",
-            foreignKey = @ForeignKey(name = "Usuario_idUsuario"))
+            foreignKey = @ForeignKey(name = "Usuario_idUsuario" ))
     private Usuario Usuario_idUsuario;
 
     @Enumerated(EnumType.STRING)
     private Especialidad especialidad;
+
+    @ManyToOne
+    @JoinColumn(name = "idDireccion", referencedColumnName = "idDireccion",
+            foreignKey = @ForeignKey(name = "Direccion_idDireccion" ))
+    private Direccion Direccion_idDireccion;
 
 }
