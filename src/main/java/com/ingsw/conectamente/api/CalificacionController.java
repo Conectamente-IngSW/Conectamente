@@ -1,10 +1,10 @@
 package com.ingsw.conectamente.api;
 
-import com.ingsw.conectamente.model.entity.Calificacion;
-import com.ingsw.conectamente.model.entity.Psicologo;
-import com.ingsw.conectamente.repository.CalificacionRepository;
+import com.ingsw.conectamente.dto.CalificacionDTO;
+import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.service.CalificacionService;
-import jdk.jfr.Category;
+import com.ingsw.conectamente.service.PsicologoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,29 +14,40 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/calificacion")
+@RequestMapping("/calificaciones")
 public class CalificacionController {
     private final CalificacionService calificacionService;
 
     @PostMapping
-    public ResponseEntity<Calificacion> createCalificacion(@RequestBody Calificacion calificacion) {
-        Calificacion createdCalificacion = calificacionService.createCalificacion(calificacion);
-        return new ResponseEntity<Calificacion>(createdCalificacion, HttpStatus.CREATED);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Calificacion> getCalificacionById(@PathVariable("id") Integer id){
-        Calificacion calificacion = calificacionService.findCalificacionById(id);
-        return new ResponseEntity<Calificacion>(calificacion, HttpStatus.OK);
+    public ResponseEntity<CalificacionDTO> create(@RequestBody @Valid CalificacionDTO calificacionDTO) {
+        CalificacionDTO createdCalificacion = calificacionService.createCalificacion(calificacionDTO);
+        return new ResponseEntity<>(createdCalificacion, HttpStatus.CREATED);
     }
 
     @GetMapping("/psicologo/{idPsicologo}")
-    public ResponseEntity<List<Calificacion>> getCalificacionesByPsicologo(@PathVariable Integer idPsicologo) {
-        List<Calificacion> calificaciones = calificacionService.findCalificacionesByPsicologoId(idPsicologo);
+    public ResponseEntity<List<CalificacionDTO>> getByPsicologoId(@PathVariable Integer idPsicologo) {
+        List<CalificacionDTO> calificaciones = calificacionService.findCalificacionesByPsicologoId(idPsicologo);
         if (calificaciones.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(calificaciones);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CalificacionDTO> getById(@PathVariable Integer id) {
+        return ResponseEntity.ok(calificacionService.findCalificacionById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CalificacionDTO> update(@PathVariable Integer id, @Valid @RequestBody CalificacionDTO calificacionDTO) {
+        CalificacionDTO updatedCalificacion = calificacionService.update(id, calificacionDTO);
+        return new ResponseEntity<>(updatedCalificacion, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        calificacionService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

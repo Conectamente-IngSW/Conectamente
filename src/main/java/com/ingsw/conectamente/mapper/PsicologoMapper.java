@@ -14,12 +14,7 @@ public class PsicologoMapper {
     }
 
     public PsicologoDTO toDto(Psicologo psicologo) {
-        PsicologoDTO dto = modelMapper.map(psicologo, PsicologoDTO.class);
-        if (psicologo.getUsuario_idUsuario() != null) {
-            dto.setNombre(psicologo.getUsuario_idUsuario().getNombre());
-            dto.setApellido(psicologo.getUsuario_idUsuario().getApellido());
-        }
-        return dto;
+        return modelMapper.map(psicologo, PsicologoDTO.class);
     }
 
     public Psicologo toEntity(PsicologoDTO psicologoDTO) {
