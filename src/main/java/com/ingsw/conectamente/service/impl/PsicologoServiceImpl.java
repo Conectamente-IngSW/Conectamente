@@ -61,7 +61,7 @@ public class PsicologoServiceImpl implements PsicologoService {
     @Override
     public PsicologoDTO findById(Integer id) {
         Psicologo psicologo = psicologoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("El autor con ID "+id+" no fue encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("El psicologo con ID "+id+" no fue encontrado"));
         return psicologoMapper.toDto(psicologo);
     }
 
@@ -69,45 +69,28 @@ public class PsicologoServiceImpl implements PsicologoService {
     @Override
     public PsicologoDTO update(Integer id, PsicologoDTO updatePsicologoDTO) {
         Psicologo psicologoFromDb = psicologoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("El psicologo con ID " + id + " no fue encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("El psicólogo con ID " + id + " no fue encontrado"));
 
+        // Validar número de colegiatura duplicado
         List<Psicologo> existentes = psicologoRepository.findByNumColegiatura(updatePsicologoDTO.getNumColegiatura());
         boolean existeOtro = existentes.stream()
                 .anyMatch(existingPsicologo -> !existingPsicologo.getIdPsicologo().equals(id));
         if (existeOtro) {
-            throw new BadRequestException("Ya existe un psicologo con el mismo numero de colegiatura");
+            throw new BadRequestException("Ya existe un psicólogo con el mismo número de colegiatura");
         }
 
-        // Actualizar los campos del psicologo
+        // Actualizar campos básicos
+        psicologoFromDb.setNombrePsicologo(updatePsicologoDTO.getNombre());
+        psicologoFromDb.setApellidoPsicologo(updatePsicologoDTO.getApellido());
+        psicologoFromDb.setEdadPsicologo(updatePsicologoDTO.getEdad());
         psicologoFromDb.setDisponibilidad(updatePsicologoDTO.getDisponibilidad());
-        psicologoFromDb.setDescripcion(updatePsicologoDTO.getDescripcion());
+        psicologoFromDb.setDescripcionPsicologo(updatePsicologoDTO.getDescripcion());
         psicologoFromDb.setTarifa(updatePsicologoDTO.getTarifa());
         psicologoFromDb.setEspecialidad(updatePsicologoDTO.getEspecialidad());
         psicologoFromDb.setNumColegiatura(updatePsicologoDTO.getNumColegiatura());
         psicologoFromDb.setUpdatedAt(LocalDateTime.now());
 
-        Usuario usuarioFromDb = psicologoFromDb.getUsuario_idUsuario();
-        Usuario updateUsuario = psicologoMapper.toEntity(updatePsicologoDTO).getUsuario_idUsuario();
-
-        if (updateUsuario.getNombre() != null) {
-            usuarioFromDb.setNombre(updateUsuario.getNombre());
-        }
-        if (updateUsuario.getApellido() != null) {
-            usuarioFromDb.setApellido(updateUsuario.getApellido());
-        }
-        if (updateUsuario.getEmail() != null) {
-            usuarioFromDb.setEmail(updateUsuario.getEmail());
-        }
-        if (updateUsuario.getEdad() != null) {
-            usuarioFromDb.setEdad(updateUsuario.getEdad());
-        }
-        if (updateUsuario.getDni() != null) {
-            usuarioFromDb.setDni(updateUsuario.getDni());
-        }
-        if (updateUsuario.getContrasenia() != null) {
-            usuarioFromDb.setContrasenia(updateUsuario.getContrasenia());
-        }
-
+        // Guardar cambios
         psicologoFromDb = psicologoRepository.save(psicologoFromDb);
         return psicologoMapper.toDto(psicologoFromDb);
     }

@@ -4,12 +4,24 @@ import com.ingsw.conectamente.enums.Especialidad;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class PsicologoDTO {
     private Integer idPsicologo;
+
+    @NotBlank(message = "El nombre es requerido")
+    private String nombre;
+
+    @NotBlank(message = "El apellido es requerido")
+    private String apellido;
+
+    @NotBlank(message = "El dni es requerido")
+    private String dniPsicologo;
+
+
+    @NotNull(message = "La edad es requerida")
+    private Integer edad;
 
     @NotBlank(message = "El numero de colegiatura es requerido")
     @Size(max = 10, message = "El numero de colegiatura debe tener 10 caracteres")
@@ -26,5 +38,8 @@ public class PsicologoDTO {
 
     @NotNull(message = "La especialidad es requerida")
     private Especialidad especialidad;
+
+    @NotNull(message = "El ID del Usuario no puede ser nulo")
+    private Integer idUsuario;
 
 }
