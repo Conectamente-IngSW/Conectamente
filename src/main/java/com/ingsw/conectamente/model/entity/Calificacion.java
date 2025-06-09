@@ -2,9 +2,11 @@ package com.ingsw.conectamente.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Setter
 @Data
 @Entity
 @Table(name = "Calificacion")
