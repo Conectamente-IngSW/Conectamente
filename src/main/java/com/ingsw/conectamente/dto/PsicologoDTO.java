@@ -26,4 +26,5 @@ public class PsicologoDTO {
 
     @NotNull(message = "La especialidad es requerida")
     private Especialidad especialidad;
+
 }
