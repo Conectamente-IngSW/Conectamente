@@ -39,7 +39,11 @@ public class PsicologoDTO {
     @NotNull(message = "La especialidad es requerida")
     private Especialidad especialidad;
 
-    @NotNull(message = "El ID del Usuario no puede ser nulo")
-    private Integer idUsuario;
+    // Datos Usuario
+    @NotBlank(message = "El email es requerido")
+    private String email;
+
+    @NotBlank(message = "La contraseña es requerida")
+    private String contrasenia;
 
 }

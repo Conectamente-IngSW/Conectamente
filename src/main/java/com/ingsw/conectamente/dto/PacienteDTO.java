@@ -25,6 +25,10 @@ public class PacienteDTO {
     @Size(max = 500, message = "La descripción no puede exceder los 500 caracteres")
     private String descripcion;
 
-    @NotNull(message = "El ID del Usuario no puede ser nulo")
-    private Integer idUsuario;
+    // Datos Usuario
+    @NotBlank(message = "El email es requerido")
+    private String email;
+
+    @NotBlank(message = "La contraseña es requerida")
+    private String contrasenia;
 }

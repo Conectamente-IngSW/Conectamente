@@ -3,12 +3,14 @@ package com.ingsw.conectamente.service.impl;
 
 import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.enums.Especialidad;
+import com.ingsw.conectamente.enums.Rol;
 import com.ingsw.conectamente.exception.BadRequestException;
 import com.ingsw.conectamente.exception.ResourceNotFoundException;
 import com.ingsw.conectamente.mapper.PsicologoMapper;
 import com.ingsw.conectamente.model.entity.Psicologo;
 import com.ingsw.conectamente.model.entity.Usuario;
 import com.ingsw.conectamente.repository.PsicologoRepository;
+import com.ingsw.conectamente.repository.UsuarioRepository;
 import com.ingsw.conectamente.service.PsicologoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,6 +26,7 @@ import java.util.List;
 public class PsicologoServiceImpl implements PsicologoService {
     private final PsicologoRepository psicologoRepository;
     private final PsicologoMapper psicologoMapper;
+    private final UsuarioRepository usuarioRepository;
 
     @Transactional(readOnly = true)
     @Override
@@ -52,6 +55,13 @@ public class PsicologoServiceImpl implements PsicologoService {
         if (!existentes.isEmpty()) {
             throw new BadRequestException("Ya existe un psicologo con el mismo numero de colegiatura");
         }
+
+        Usuario usuario = new Usuario();
+        usuario.setEmail(psicologoDTO.getEmail());
+        usuario.setContrasenia(psicologoDTO.getContrasenia());
+        usuario.setRol(Rol.PSICOLOGO);
+        usuario = usuarioRepository.save(usuario);
+
         Psicologo psicologo = psicologoMapper.toEntity(psicologoDTO);
         psicologo.setCreatedAt(LocalDateTime.now());
         psicologo = psicologoRepository.save(psicologo);
