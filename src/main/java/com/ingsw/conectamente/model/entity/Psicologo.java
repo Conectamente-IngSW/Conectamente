@@ -56,4 +56,7 @@ public class Psicologo {
             foreignKey = @ForeignKey(name = "Direccion_idDireccion" ))
     private Direccion Direccion_idDireccion;
 
+    @OneToOne
+    @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario")
+    private Usuario usuario;
 }
