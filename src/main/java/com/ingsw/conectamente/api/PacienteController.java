@@ -2,6 +2,7 @@ package com.ingsw.conectamente.api;
 
 import com.ingsw.conectamente.dto.PacienteDTO;
 import com.ingsw.conectamente.dto.PsicologoDTO;
+import com.ingsw.conectamente.dto.VisualizarPacienteDTO;
 import com.ingsw.conectamente.model.entity.Paciente;
 import com.ingsw.conectamente.service.PacienteService;
 import jakarta.validation.Valid;
@@ -19,14 +20,14 @@ public class PacienteController {
     private final PacienteService pacienteService;
 
     @GetMapping
-    public ResponseEntity<List<PacienteDTO>> listAll() {
-        List<PacienteDTO> psicologos = pacienteService.getAll();
+    public ResponseEntity<List<VisualizarPacienteDTO>> listAll() {
+        List<VisualizarPacienteDTO> psicologos = pacienteService.getAll();
         return new ResponseEntity<>(psicologos, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteDTO> getPerfil(@PathVariable Integer id) {
-        PacienteDTO dto = pacienteService.findById(id);
+    public ResponseEntity<VisualizarPacienteDTO> getPerfil(@PathVariable Integer id) {
+        VisualizarPacienteDTO dto = pacienteService.findById(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

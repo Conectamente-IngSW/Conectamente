@@ -1,10 +1,12 @@
 package com.ingsw.conectamente.service.impl;
 
 import com.ingsw.conectamente.dto.PacienteDTO;
+import com.ingsw.conectamente.dto.VisualizarPacienteDTO;
 import com.ingsw.conectamente.enums.Rol;
 import com.ingsw.conectamente.exception.BadRequestException;
 import com.ingsw.conectamente.exception.ResourceNotFoundException;
 import com.ingsw.conectamente.mapper.PacienteMapper;
+import com.ingsw.conectamente.mapper.VisualizacionPacienteMapper;
 import com.ingsw.conectamente.model.entity.Paciente;
 import com.ingsw.conectamente.model.entity.Usuario;
 import com.ingsw.conectamente.repository.PacienteRepository;
@@ -22,13 +24,14 @@ import java.util.List;
 public class PacienteServiceImpl implements PacienteService {
     private final PacienteRepository pacienteRepository;
     private final PacienteMapper pacienteMapper;
+    private final VisualizacionPacienteMapper visualizarPacienteMapper;
     private final UsuarioRepository usuarioRepository;
 
     @Transactional(readOnly = true)
     @Override
-    public List<PacienteDTO> getAll() {
+    public List<VisualizarPacienteDTO> getAll() {
         List<Paciente> pacientes = pacienteRepository.findAll();
-        return pacientes.stream().map(pacienteMapper::toDto).toList();
+        return pacientes.stream().map(visualizarPacienteMapper::toDto).toList();
     }
 
     @Transactional
@@ -53,10 +56,10 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public PacienteDTO findById(Integer id) {
+    public VisualizarPacienteDTO findById(Integer id) {
         Paciente paciente = pacienteRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("El paciente con ID "+id+" no fue encontrado"));
-        return pacienteMapper.toDto(paciente);
+        return visualizarPacienteMapper.toDto(paciente);
     }
 
     @Transactional
