@@ -1,6 +1,7 @@
 package com.ingsw.conectamente.api;
 
 import com.ingsw.conectamente.dto.PsicologoDTO;
+import com.ingsw.conectamente.dto.VisualizarPsicologoDTO;
 import com.ingsw.conectamente.enums.Especialidad;
 import com.ingsw.conectamente.model.entity.Psicologo;
 import com.ingsw.conectamente.service.PsicologoService;
@@ -24,8 +25,8 @@ public class PsicologoController {
 
 
     @GetMapping
-    public ResponseEntity<List<PsicologoDTO>> listAll() {
-        List<PsicologoDTO> psicologos = psicologoService.getAll();
+    public ResponseEntity<List<VisualizarPsicologoDTO>> listAll() {
+        List<VisualizarPsicologoDTO> psicologos = psicologoService.getAll();
         return new ResponseEntity<>(psicologos, HttpStatus.OK);
     }
 
@@ -64,8 +65,8 @@ public class PsicologoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PsicologoDTO> getPerfil(@PathVariable Integer id) {
-        PsicologoDTO dto = psicologoService.findById(id);
+    public ResponseEntity<VisualizarPsicologoDTO> getPerfil(@PathVariable Integer id) {
+        VisualizarPsicologoDTO dto = psicologoService.findById(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }

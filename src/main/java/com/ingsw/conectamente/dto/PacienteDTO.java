@@ -1,14 +1,14 @@
 package com.ingsw.conectamente.dto;
 
-import com.ingsw.conectamente.enums.Especialidad;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class PsicologoDTO {
-    private Integer idPsicologo;
+public class PacienteDTO {
+    private Integer idPaciente;
 
     @NotBlank(message = "El nombre es requerido")
     private String nombre;
@@ -17,27 +17,13 @@ public class PsicologoDTO {
     private String apellido;
 
     @NotBlank(message = "El dni es requerido")
-    private String dniPsicologo;
-
+    private String dniPaciente;
 
     @NotNull(message = "La edad es requerida")
     private Integer edad;
 
-    @NotBlank(message = "El numero de colegiatura es requerido")
-    @Size(max = 10, message = "El numero de colegiatura debe tener 10 caracteres")
-    private String numColegiatura;
-
-    @NotBlank(message = "La disponibilidad es requerida")
-    private String disponibilidad;
-
-    @Size(max = 500, message = "La descripcion no puede exceder los 500 caracteres")
+    @Size(max = 500, message = "La descripción no puede exceder los 500 caracteres")
     private String descripcion;
-
-    @NotNull(message = "La tarifa es requerida")
-    private Float tarifa;
-
-    @NotNull(message = "La especialidad es requerida")
-    private Especialidad especialidad;
 
     // Datos Usuario
     @NotBlank(message = "El email es requerido")
@@ -45,5 +31,4 @@ public class PsicologoDTO {
 
     @NotBlank(message = "La contraseña es requerida")
     private String contrasenia;
-
 }
