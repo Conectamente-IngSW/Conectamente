@@ -15,6 +15,7 @@ import com.ingsw.conectamente.repository.PsicologoRepository;
 import com.ingsw.conectamente.repository.UsuarioRepository;
 import com.ingsw.conectamente.service.PsicologoService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,6 @@ public class PsicologoServiceImpl implements PsicologoService {
         Page<Psicologo> psicologos = psicologoRepository.findAll(pageable);
         return psicologos.map(psicologoMapper::toDto);
     }
-
     @Transactional
     @Override
     public PsicologoDTO create(PsicologoDTO psicologoDTO) {
@@ -129,11 +129,9 @@ public class PsicologoServiceImpl implements PsicologoService {
         }
         return psicologoRepository.findAll();
     }
-
     @Override
     public List<PsicologoDTO> findAll() {
         List<Psicologo> psicologos = psicologoRepository.findAll();
         return psicologos.stream().map(psicologoMapper::toDto).toList();
     }
-
 }
