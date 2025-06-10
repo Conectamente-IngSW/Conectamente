@@ -2,11 +2,13 @@ package com.ingsw.conectamente.service.impl;
 
 
 import com.ingsw.conectamente.dto.PsicologoDTO;
+import com.ingsw.conectamente.dto.VisualizarPsicologoDTO;
 import com.ingsw.conectamente.enums.Especialidad;
 import com.ingsw.conectamente.enums.Rol;
 import com.ingsw.conectamente.exception.BadRequestException;
 import com.ingsw.conectamente.exception.ResourceNotFoundException;
 import com.ingsw.conectamente.mapper.PsicologoMapper;
+import com.ingsw.conectamente.mapper.VisualizacionPsicologoMapper;
 import com.ingsw.conectamente.model.entity.Psicologo;
 import com.ingsw.conectamente.model.entity.Usuario;
 import com.ingsw.conectamente.repository.PsicologoRepository;
@@ -26,13 +28,14 @@ import java.util.List;
 public class PsicologoServiceImpl implements PsicologoService {
     private final PsicologoRepository psicologoRepository;
     private final PsicologoMapper psicologoMapper;
+    private final VisualizacionPsicologoMapper visualizacionPsicologoMapper;
     private final UsuarioRepository usuarioRepository;
 
     @Transactional(readOnly = true)
     @Override
-    public List<PsicologoDTO>getAll() {
+    public List<VisualizarPsicologoDTO>getAll() {
         List<Psicologo> psicologos = psicologoRepository.findAll();
-        return psicologos.stream().map(psicologoMapper::toDto).toList();
+        return psicologos.stream().map(visualizacionPsicologoMapper::toDto).toList();
     }
 
     @Override
@@ -69,10 +72,10 @@ public class PsicologoServiceImpl implements PsicologoService {
     }
 
     @Override
-    public PsicologoDTO findById(Integer id) {
+    public VisualizarPsicologoDTO findById(Integer id) {
         Psicologo psicologo = psicologoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("El psicologo con ID "+id+" no fue encontrado"));
-        return psicologoMapper.toDto(psicologo);
+        return visualizacionPsicologoMapper.toDto(psicologo);
     }
 
     @Transactional
