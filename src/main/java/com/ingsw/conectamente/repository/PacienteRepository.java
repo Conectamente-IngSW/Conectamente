@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface PacienteRepository  extends JpaRepository<Paciente, Integer> {
 
-    boolean existsByNombrePacienteAndApellidoPaciente(String nombrePaciente, String apellidoPaciente);
+    boolean existsByNombreAndApellido(String nombre, String apellido);
 
-    boolean existsByNombrePacienteAndApellidoPacienteAndUsuario_idUsuarioNot(String nombrePaciente, String apellidoPaciente, Integer idUsuario);
+    boolean existsByNombreAndApellidoAndUsuario_idUsuarioNot(String nombre, String apellido, Integer idUsuario);
 
 
     List<Paciente> findByIdPaciente(Integer idPaciente);

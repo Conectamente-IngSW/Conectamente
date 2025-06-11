@@ -2,13 +2,11 @@ package com.ingsw.conectamente.service.impl;
 
 import com.ingsw.conectamente.dto.PacienteDTO;
 import com.ingsw.conectamente.dto.VisualizarPacienteDTO;
-import com.ingsw.conectamente.enums.Rol;
 import com.ingsw.conectamente.exception.BadRequestException;
 import com.ingsw.conectamente.exception.ResourceNotFoundException;
 import com.ingsw.conectamente.mapper.PacienteMapper;
 import com.ingsw.conectamente.mapper.VisualizacionPacienteMapper;
 import com.ingsw.conectamente.model.entity.Paciente;
-import com.ingsw.conectamente.model.entity.Usuario;
 import com.ingsw.conectamente.repository.PacienteRepository;
 import com.ingsw.conectamente.repository.UsuarioRepository;
 import com.ingsw.conectamente.service.PacienteService;
@@ -42,14 +40,8 @@ public class PacienteServiceImpl implements PacienteService {
             throw new BadRequestException("Ya existe un paciente con el mismo id");
         }
 
-        Usuario usuario = new Usuario();
-        usuario.setEmail(pacienteDTO.getEmail());
-        usuario.setContrasenia(pacienteDTO.getContrasenia());
-        usuario.setRol(Rol.PACIENTE);
-        usuario = usuarioRepository.save(usuario);
 
         Paciente paciente = pacienteMapper.toEntity(pacienteDTO);
-        paciente.setUsuario_idUsuario(usuario);
         paciente.setCreatedAt(LocalDateTime.now());
         paciente = pacienteRepository.save(paciente);
         return pacienteMapper.toDto(paciente);
@@ -69,9 +61,9 @@ public class PacienteServiceImpl implements PacienteService {
                 .orElseThrow(() -> new ResourceNotFoundException("El paciente con ID " + id + " no fue encontrado"));
 
         // Actualizar los campos
-        pacienteFromDb.setNombrePaciente(updatePacienteDTO.getNombre());
-        pacienteFromDb.setApellidoPaciente(updatePacienteDTO.getApellido());
-        pacienteFromDb.setDniPaciente(updatePacienteDTO.getDniPaciente());
+        pacienteFromDb.setNombre(updatePacienteDTO.getNombre());
+        pacienteFromDb.setApellido(updatePacienteDTO.getApellido());
+        pacienteFromDb.setDni(updatePacienteDTO.getDni());
         pacienteFromDb.setEdad(updatePacienteDTO.getEdad());
         pacienteFromDb.setDescripcionPaciente(updatePacienteDTO.getDescripcion());
         pacienteFromDb.setUpdatedAt(LocalDateTime.now());

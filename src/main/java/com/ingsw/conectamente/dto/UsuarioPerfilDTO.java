@@ -11,14 +11,13 @@ public class UsuarioPerfilDTO {
 
     private Integer idUsuario;
     private String email;
-    private ERol role;
+    private ERol rol;
     private String nombre;
     private String apellido;
 
     private String dni;
     private String telefono;
     private String fechaNacimiento;
-    private String fotoPerfil;
     private String descripcion;
     private Departamento departamento;
     private Distrito distrito;

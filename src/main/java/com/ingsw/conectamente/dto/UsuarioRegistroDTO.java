@@ -1,5 +1,8 @@
 package com.ingsw.conectamente.dto;
 
+import com.ingsw.conectamente.enums.Departamento;
+import com.ingsw.conectamente.enums.Distrito;
+import com.ingsw.conectamente.enums.ERol;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -21,12 +24,9 @@ public class UsuarioRegistroDTO {
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     private String password;
 
-    private String telefono;
-    private String fechaNacimiento;
-    private String ciudad;
-    private String pais;
-    private String codigoPostal;
+
+    private String dni;
+    private String numColegiatura;
     private String descripcion;
-    private String fotoPerfilUrl;
-    private String rol; // Puede ser "PACIENTE", "PSICOLOGO" o "ADMINISTRADOR"
+
 }

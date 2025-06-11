@@ -17,8 +17,7 @@ public class PsicologoDTO {
     private String apellido;
 
     @NotBlank(message = "El dni es requerido")
-    private String dniPsicologo;
-
+    private String dni;
 
     @NotNull(message = "La edad es requerida")
     private Integer edad;
@@ -38,12 +37,5 @@ public class PsicologoDTO {
 
     @NotNull(message = "La especialidad es requerida")
     private Especialidad especialidad;
-
-    // Datos Usuario
-    @NotBlank(message = "El email es requerido")
-    private String email;
-
-    @NotBlank(message = "La contraseña es requerida")
-    private String contrasenia;
 
 }

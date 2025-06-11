@@ -4,7 +4,8 @@ package com.ingsw.conectamente.service.impl;
 import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.dto.VisualizarPsicologoDTO;
 import com.ingsw.conectamente.enums.Especialidad;
-import com.ingsw.conectamente.enums.Rol;
+import com.ingsw.conectamente.enums.ERol;
+import com.ingsw.conectamente.model.entity.Rol;
 import com.ingsw.conectamente.exception.BadRequestException;
 import com.ingsw.conectamente.exception.ResourceNotFoundException;
 import com.ingsw.conectamente.mapper.PsicologoMapper;
@@ -59,12 +60,6 @@ public class PsicologoServiceImpl implements PsicologoService {
             throw new BadRequestException("Ya existe un psicologo con el mismo numero de colegiatura");
         }
 
-        Usuario usuario = new Usuario();
-        usuario.setEmail(psicologoDTO.getEmail());
-        usuario.setContrasenia(psicologoDTO.getContrasenia());
-        usuario.setRol(Rol.PSICOLOGO);
-        usuario = usuarioRepository.save(usuario);
-
         Psicologo psicologo = psicologoMapper.toEntity(psicologoDTO);
         psicologo.setCreatedAt(LocalDateTime.now());
         psicologo = psicologoRepository.save(psicologo);
@@ -93,9 +88,9 @@ public class PsicologoServiceImpl implements PsicologoService {
         }
 
         // Actualizar campos básicos
-        psicologoFromDb.setNombrePsicologo(updatePsicologoDTO.getNombre());
-        psicologoFromDb.setApellidoPsicologo(updatePsicologoDTO.getApellido());
-        psicologoFromDb.setEdadPsicologo(updatePsicologoDTO.getEdad());
+        psicologoFromDb.setNombre(updatePsicologoDTO.getNombre());
+        psicologoFromDb.setApellido(updatePsicologoDTO.getApellido());
+        psicologoFromDb.setEdad(updatePsicologoDTO.getEdad());
         psicologoFromDb.setDisponibilidad(updatePsicologoDTO.getDisponibilidad());
         psicologoFromDb.setDescripcionPsicologo(updatePsicologoDTO.getDescripcion());
         psicologoFromDb.setTarifa(updatePsicologoDTO.getTarifa());

@@ -15,23 +15,25 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPaciente;
 
-    @Column(nullable = false)
-    private String nombrePaciente;
+    @Column(name = "nombre", nullable = false)
+    private String nombre;
 
-    @Column(nullable = false)
-    private String apellidoPaciente;
+    @Column(name = "apellido", nullable = false)
+    private String apellido;
 
-    @Column(nullable = false)
-    private String dniPaciente;
+    @Column(name = "dni", nullable = false, unique = true)
+    private String dni;
 
-    @Column(nullable = false)
+    @Column(name = "edad", nullable = false)
     private Integer edad;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "descripcionPaciente", columnDefinition = "TEXT")
     private String descripcionPaciente;
 
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     //FK
