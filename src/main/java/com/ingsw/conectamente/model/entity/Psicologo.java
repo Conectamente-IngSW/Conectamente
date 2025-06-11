@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Setter
 @Data
@@ -44,7 +43,7 @@ public class Psicologo {
     private LocalDateTime updatedAt;
 
     //FK
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario",
             foreignKey = @ForeignKey(name = "Usuario_idUsuario" ))
     private Usuario Usuario_idUsuario;
@@ -56,12 +55,5 @@ public class Psicologo {
     @JoinColumn(name = "idDireccion", referencedColumnName = "idDireccion",
             foreignKey = @ForeignKey(name = "Direccion_idDireccion" ))
     private Direccion Direccion_idDireccion;
-
-    @OneToMany(mappedBy = "psicologo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Calificacion> calificaciones;
-
-    //NO BORRAR, descomentar cuando esté implementado junto a Citas
-    //@OneToMany(mappedBy = "cita", cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<Cita> citas;
 
 }

@@ -37,9 +37,9 @@ public class PacienteServiceImpl implements PacienteService {
     @Transactional
     @Override
     public PacienteDTO create(PacienteDTO pacienteDTO) {
-        List<Paciente> existentes = pacienteRepository.findByDniPaciente(pacienteDTO.getDniPaciente());
+        List<Paciente> existentes = pacienteRepository.findByIdPaciente(pacienteDTO.getIdPaciente());
         if (!existentes.isEmpty()) {
-            throw new BadRequestException("Ya existe un paciente registrado con el mismo dni");
+            throw new BadRequestException("Ya existe un paciente con el mismo id");
         }
 
         Usuario usuario = new Usuario();
@@ -68,8 +68,6 @@ public class PacienteServiceImpl implements PacienteService {
         Paciente pacienteFromDb = pacienteRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("El paciente con ID " + id + " no fue encontrado"));
 
-        Usuario usuario = pacienteFromDb.getUsuario_idUsuario();
-
         // Actualizar los campos
         pacienteFromDb.setNombrePaciente(updatePacienteDTO.getNombre());
         pacienteFromDb.setApellidoPaciente(updatePacienteDTO.getApellido());
@@ -78,20 +76,8 @@ public class PacienteServiceImpl implements PacienteService {
         pacienteFromDb.setDescripcionPaciente(updatePacienteDTO.getDescripcion());
         pacienteFromDb.setUpdatedAt(LocalDateTime.now());
 
-        // Datos del usuario
-        usuario.setEmail(updatePacienteDTO.getEmail());
-        usuario.setContrasenia(updatePacienteDTO.getContrasenia());
-
-        // Guardar cambios
-        pacienteRepository.save(pacienteFromDb);
-        usuarioRepository.save(usuario);
-
-        // Mapear y devolver DTO con email y contraseña incluidos
-        PacienteDTO dto = pacienteMapper.toDto(pacienteFromDb);
-        dto.setEmail(usuario.getEmail());
-        dto.setContrasenia(usuario.getContrasenia());
-        return dto;
-
+        pacienteFromDb = pacienteRepository.save(pacienteFromDb);
+        return pacienteMapper.toDto(pacienteFromDb);
     }
 
     @Transactional
