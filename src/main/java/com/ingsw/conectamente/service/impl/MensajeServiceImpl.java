@@ -21,14 +21,12 @@ public class MensajeServiceImpl implements MensajeService {
     }
 
     @Override
-    public List<Mensaje> findMensajeByPsicologoId(Integer idPsicologo) {
-        return mensajeRepository.findByPsicologoIdPsicologo(idPsicologo);
+    public List<Mensaje> findMensajeByUsuarioId(Integer idUsuario) {
+        return mensajeRepository.findMensajeByUsuarioId(idUsuario);
     }
 
     @Override
-    public List<Mensaje> findMensajeByPacienteId(Integer idPaciente) {
-        return mensajeRepository.findByPsicologoIdPsicologo(idPaciente);
+    public void deleteMensajeByUsuarioId(Integer idUsuario) {
+        mensajeRepository.deleteMensajeByUsuarioId(idUsuario);
     }
-
-
 }

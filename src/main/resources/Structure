@@ -1,0 +1,96 @@
+
+src {
+    main {
+        java {
+            com.ingsw.conectamente {
+                api {
+                    CalificacionController,
+                            CertificadoController,
+                            MensajeController,
+                            PacienteController,
+                            PsicologoController,
+                            UsuarioController
+                },
+                config {
+                    ModelMapperConfig
+                },
+                dto {
+                    CalificacionDTO,
+                            CertificadoDTO,
+                            MensajeDTO,
+                            PacienteDTO,
+                            PsicologoDTO,
+                            UsuarioDTO,
+                            VisualizarPacienteDTO,
+                            VisualizarPsicologoDTO
+                },
+                enums {
+                    Departamento,
+                            Distrito,
+                            Especialidad,
+                            Rol,
+                },
+                exception {
+                    BadRequestException,
+                            CustomErrorResponse,
+                            GlobalExceptionHandler,
+                            ResourceNotFoundException
+                },
+                mapper {
+                    CalificacionMapper,
+                            CertificadoMapper,
+                            MensajeMapper,
+                            PacienteMapper,
+                            PsicologoMapper,
+                            UserMapper,
+                            VisualizacionPacienteMapper,
+                            VisualizacionPsicologoMapper
+                },
+                model {
+                    entity {
+                        Calificacion,
+                                Certificado,
+                                Direccion,
+                                Mensaje,
+                                Paciente,
+                                Psicologo,
+                                Usuario
+                    }
+                },
+                repository {
+                    CalificacionRepository,
+                            CertificadoRepository,
+                            MensajeRepository,
+                            PacienteRepository,
+                            PsicologoRepository,
+                            UsuarioRepository
+                },
+                service {
+                    impl {
+                        CalificacionServiceImpl,
+                                CertificadoServiceImpl,
+                                MensajeServiceImpl,
+                                PacienteServiceImpl,
+                                PsicologoServiceImpl,
+                                UserServiceImpl
+                    },
+                    CalificacionService,
+                            CertificadoService,
+                            MensajeService,
+                            PacienteService,
+                            PsicologoService,
+                            UserService
+                },
+                ConectamenteApplication
+            }
+        },
+
+        resources {
+            static {
+            },
+            templates {
+            },
+            application.properties
+        }
+    }
+}

@@ -8,6 +8,7 @@ import java.util.List;
 
 
 public interface MensajeRepository extends JpaRepository<Mensaje, Integer> {
-    List<Mensaje> findByPsicologoIdPsicologo(Integer idPsicologo);
-    List<Mensaje> findByPacienteIdPaciente(Integer idPaciente);
+    List<Mensaje> findMensajeByUsuarioId(Integer idUsuario);
+
+    void deleteMensajeByUsuarioId(Integer idUsuario);
 }

@@ -1,7 +1,6 @@
 package com.ingsw.conectamente.api;
 
 import com.ingsw.conectamente.model.entity.Mensaje;
-import com.ingsw.conectamente.repository.MensajeRepository;
 import com.ingsw.conectamente.service.MensajeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,32 +15,27 @@ import java.util.List;
 @RequestMapping("/mensaje")
 public class MensajeController {
     private final MensajeService mensajeService;
-    private final MensajeRepository mensajeRepository;
 
     @PostMapping
     public ResponseEntity<Mensaje> createMensaje(@RequestBody Mensaje mensaje) {
-        Mensaje createdMensaje = mensajeService.createMensaje(mensaje);
-        return new ResponseEntity<Mensaje>(createdMensaje, HttpStatus.CREATED);
+        Mensaje created = mensajeService.createMensaje(mensaje);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    @GetMapping("/psicologo/{idPsicologo}")
-    public ResponseEntity<List<Mensaje>> getCalificacionesByPsicologo(@PathVariable Integer idPsicologo) {
-        List<Mensaje> mensajes = mensajeService.findMensajeByPsicologoId(idPsicologo);
+    @GetMapping("/usuario/{idUsuario}")
+    public ResponseEntity<List<Mensaje>> getMensajesByUsuarioId(
+            @PathVariable("idUsuario") Integer idUsuario) {
+        List<Mensaje> mensajes = mensajeService.findMensajeByUsuarioId(idUsuario);
         if (mensajes.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(mensajes);
     }
 
-    @GetMapping("/paciente/{idPaciente}")
-    public ResponseEntity<List<Mensaje>> getCalificacionesByPaciente(@PathVariable Integer idPaciente) {
-        List<Mensaje> mensajes = mensajeService.findMensajeByPsicologoId(idPaciente);
-        if (mensajes.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(mensajes);
+    @DeleteMapping("/usuario/{idUsuario}")
+    public ResponseEntity<Void> deleteMensajesByUsuarioId(
+            @PathVariable("idUsuario") Integer idUsuario) {
+        mensajeService.deleteMensajeByUsuarioId(idUsuario);
+        return ResponseEntity.noContent().build();
     }
-
-
-
 }
