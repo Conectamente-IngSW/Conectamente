@@ -7,6 +7,7 @@ import com.ingsw.conectamente.exception.ResourceNotFoundException;
 import com.ingsw.conectamente.mapper.PacienteMapper;
 import com.ingsw.conectamente.mapper.VisualizacionPacienteMapper;
 import com.ingsw.conectamente.model.entity.Paciente;
+import com.ingsw.conectamente.model.entity.Usuario;
 import com.ingsw.conectamente.repository.PacienteRepository;
 import com.ingsw.conectamente.repository.UsuarioRepository;
 import com.ingsw.conectamente.service.PacienteService;
@@ -35,7 +36,7 @@ public class PacienteServiceImpl implements PacienteService {
     @Transactional
     @Override
     public PacienteDTO create(PacienteDTO pacienteDTO) {
-        List<Paciente> existentes = pacienteRepository.findByDniPaciente(pacienteDTO.getDniPaciente());
+        List<Paciente> existentes = pacienteRepository.findByDni(pacienteDTO.getDni());
         if (!existentes.isEmpty()) {
             throw new BadRequestException("Ya existe un paciente registrado con el mismo dni");
         }
@@ -60,7 +61,7 @@ public class PacienteServiceImpl implements PacienteService {
         Paciente pacienteFromDb = pacienteRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("El paciente con ID " + id + " no fue encontrado"));
 
-        Usuario usuario = pacienteFromDb.getUsuario_idUsuario();
+        Usuario usuario = pacienteFromDb.getUsuario();
 
         // Actualizar los campos
         pacienteFromDb.setNombre(updatePacienteDTO.getNombre());
@@ -71,19 +72,19 @@ public class PacienteServiceImpl implements PacienteService {
         pacienteFromDb.setUpdatedAt(LocalDateTime.now());
 
         // Datos del usuario
-        usuario.setEmail(updatePacienteDTO.getEmail());
-        usuario.setContrasenia(updatePacienteDTO.getContrasenia());
+        //usuario.setEmail(updatePacienteDTO.getEmail());
+        //usuario.setContrasenia(updatePacienteDTO.getContrasenia());
 
         // Guardar cambios
-        pacienteRepository.save(pacienteFromDb);
+        Paciente pacienteActualizado=pacienteRepository.save(pacienteFromDb);
         usuarioRepository.save(usuario);
 
         // Mapear y devolver DTO con email y contraseña incluidos
-        PacienteDTO dto = pacienteMapper.toDto(pacienteFromDb);
-        dto.setEmail(usuario.getEmail());
-        dto.setContrasenia(usuario.getContrasenia());
-        return dto;
-
+        //PacienteDTO dto = pacienteMapper.toDto(pacienteFromDb);
+        //dto.setEmail(usuario.getEmail());
+        //dto.setContrasenia(usuario.getContrasenia());
+        //return dto;
+        return pacienteMapper.toDto(pacienteActualizado);
     }
 
     @Transactional
