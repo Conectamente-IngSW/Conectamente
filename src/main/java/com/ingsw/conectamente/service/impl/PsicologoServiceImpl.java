@@ -54,10 +54,14 @@ public class PsicologoServiceImpl implements PsicologoService {
     @Transactional
     @Override
     public PsicologoDTO create(PsicologoDTO psicologoDTO) {
-        List<Psicologo> existentes = psicologoRepository.findByNumColegiatura(psicologoDTO.getNumColegiatura());
-        if (!existentes.isEmpty()) {
+        List<Psicologo> ColegiaturaExistente = psicologoRepository.findByNumColegiatura(psicologoDTO.getNumColegiatura());
+        if (!ColegiaturaExistente.isEmpty()) {
             throw new BadRequestException("Ya existe un psicologo con el mismo numero de colegiatura");
         }
+        //List<Psicologo> EmailExistente = psicologoRepository.findByEmail(psicologoDTO.getNumColegiatura());
+        //if (!EmailExistente.isEmpty()) {
+        //    throw new BadRequestException("Ya existe un psicologo registrado con el mismo email");
+        //}
 
         Usuario usuario = new Usuario();
         usuario.setEmail(psicologoDTO.getEmail());
@@ -112,7 +116,7 @@ public class PsicologoServiceImpl implements PsicologoService {
     @Override
     public void delete(Integer id) {
         Psicologo psicologo = psicologoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("El psicologo con ID " + id + " no fue encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("El psicologo con ID "+id+" no fue encontrado"));
         psicologoRepository.delete(psicologo);
     }
 
