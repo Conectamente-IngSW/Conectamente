@@ -44,6 +44,7 @@ public class CalificacionServiceImpl implements CalificacionService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public CalificacionDTO update(Integer id, CalificacionDTO updateCalificacionDTO) {
         Calificacion calificacionFromDb = calificacionRepository.findById(id)
@@ -60,6 +61,7 @@ public class CalificacionServiceImpl implements CalificacionService {
         return calificacionMapper.toDto(calificacionFromDb);
     }
 
+    @Transactional
     @Override
     public void delete(Integer id) {
         Calificacion calificacion = calificacionRepository.findById(id)

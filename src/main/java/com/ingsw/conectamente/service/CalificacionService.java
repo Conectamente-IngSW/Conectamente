@@ -10,10 +10,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CalificacionService {
-    //Calificacion createCalificacion(Calificacion calificacion);
-    //Calificacion findCalificacionById(Integer id);
-    //List<Calificacion> findCalificacionesByPsicologoId(Integer idPsicologo);
-
     CalificacionDTO createCalificacion(CalificacionDTO calificacionDTO);
     CalificacionDTO findCalificacionById(Integer id);
     List<CalificacionDTO> findCalificacionesByPsicologoId(Integer idPsicologo);
