@@ -12,6 +12,11 @@ public interface PsicologoRepository  extends JpaRepository<Psicologo, Integer> 
     List<Psicologo> findByTarifaBetween(Float min, Float max);
     List<Psicologo> findByNumColegiatura(String numColegiatura);
 
+    boolean existsByNombreAndApellido(String nombre, String apellido);
+
+    // Método para verificar si existe un psicólogo con el mismo nombre y apellido, excepto el usuario actual
+    boolean existsByNombreAndApellidoAndUsuario_idUsuarioNot(String nombre, String apellido, Integer idUsuario);
+
 }
 
 

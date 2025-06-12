@@ -1,6 +1,6 @@
 package com.ingsw.conectamente.enums;
 
-public enum Rol {
+public enum ERol {
     PACIENTE,
     PSICOLOGO,
     ADMINISTRADOR,
