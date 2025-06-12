@@ -1,7 +1,7 @@
 package com.ingsw.conectamente.model.entity;
 
 import com.ingsw.conectamente.enums.EstadoCita;
-import com.ingsw.conectamente.enums.Rol;
+import com.ingsw.conectamente.enums.ERol;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;

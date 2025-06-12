@@ -2,7 +2,6 @@ package com.ingsw.conectamente.service.impl;
 
 import com.ingsw.conectamente.dto.PacienteDTO;
 import com.ingsw.conectamente.dto.VisualizarPacienteDTO;
-import com.ingsw.conectamente.enums.Rol;
 import com.ingsw.conectamente.exception.BadRequestException;
 import com.ingsw.conectamente.exception.ResourceNotFoundException;
 import com.ingsw.conectamente.mapper.PacienteMapper;
@@ -37,19 +36,13 @@ public class PacienteServiceImpl implements PacienteService {
     @Transactional
     @Override
     public PacienteDTO create(PacienteDTO pacienteDTO) {
-        List<Paciente> existentes = pacienteRepository.findByIdPaciente(pacienteDTO.getIdPaciente());
+        List<Paciente> existentes = pacienteRepository.findByDni(pacienteDTO.getDni());
         if (!existentes.isEmpty()) {
-            throw new BadRequestException("Ya existe un paciente con el mismo id");
+            throw new BadRequestException("Ya existe un paciente registrado con el mismo dni");
         }
 
-        Usuario usuario = new Usuario();
-        usuario.setEmail(pacienteDTO.getEmail());
-        usuario.setContrasenia(pacienteDTO.getContrasenia());
-        usuario.setRol(Rol.PACIENTE);
-        usuario = usuarioRepository.save(usuario);
 
         Paciente paciente = pacienteMapper.toEntity(pacienteDTO);
-        paciente.setUsuario_idUsuario(usuario);
         paciente.setCreatedAt(LocalDateTime.now());
         paciente = pacienteRepository.save(paciente);
         return pacienteMapper.toDto(paciente);
@@ -68,16 +61,30 @@ public class PacienteServiceImpl implements PacienteService {
         Paciente pacienteFromDb = pacienteRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("El paciente con ID " + id + " no fue encontrado"));
 
+        Usuario usuario = pacienteFromDb.getUsuario();
+
         // Actualizar los campos
-        pacienteFromDb.setNombrePaciente(updatePacienteDTO.getNombre());
-        pacienteFromDb.setApellidoPaciente(updatePacienteDTO.getApellido());
-        pacienteFromDb.setDniPaciente(updatePacienteDTO.getDniPaciente());
+        pacienteFromDb.setNombre(updatePacienteDTO.getNombre());
+        pacienteFromDb.setApellido(updatePacienteDTO.getApellido());
+        pacienteFromDb.setDni(updatePacienteDTO.getDni());
         pacienteFromDb.setEdad(updatePacienteDTO.getEdad());
         pacienteFromDb.setDescripcionPaciente(updatePacienteDTO.getDescripcion());
         pacienteFromDb.setUpdatedAt(LocalDateTime.now());
 
-        pacienteFromDb = pacienteRepository.save(pacienteFromDb);
-        return pacienteMapper.toDto(pacienteFromDb);
+        // Datos del usuario
+        //usuario.setEmail(updatePacienteDTO.getEmail());
+        //usuario.setContrasenia(updatePacienteDTO.getContrasenia());
+
+        // Guardar cambios
+        Paciente pacienteActualizado=pacienteRepository.save(pacienteFromDb);
+        usuarioRepository.save(usuario);
+
+        // Mapear y devolver DTO con email y contraseña incluidos
+        //PacienteDTO dto = pacienteMapper.toDto(pacienteFromDb);
+        //dto.setEmail(usuario.getEmail());
+        //dto.setContrasenia(usuario.getContrasenia());
+        //return dto;
+        return pacienteMapper.toDto(pacienteActualizado);
     }
 
     @Transactional
