@@ -13,4 +13,5 @@ public interface PacienteRepository  extends JpaRepository<Paciente, Integer> {
 
 
     List<Paciente> findByIdPaciente(Integer idPaciente);
+    List<Paciente> findByDniPaciente(String dni);
 }

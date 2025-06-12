@@ -9,5 +9,4 @@ import java.util.List;
 public interface CalificacionRepository extends JpaRepository<Calificacion, Integer> {
     List<Calificacion> findByPsicologoIdPsicologo(Integer idPsicologo);
     List<Calificacion> findByIdCalificacion(Integer idCalificacion);
-
 }

@@ -16,6 +16,7 @@ import com.ingsw.conectamente.repository.PsicologoRepository;
 import com.ingsw.conectamente.repository.UsuarioRepository;
 import com.ingsw.conectamente.service.PsicologoService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -51,14 +52,17 @@ public class PsicologoServiceImpl implements PsicologoService {
         Page<Psicologo> psicologos = psicologoRepository.findAll(pageable);
         return psicologos.map(psicologoMapper::toDto);
     }
-
     @Transactional
     @Override
     public PsicologoDTO create(PsicologoDTO psicologoDTO) {
-        List<Psicologo> existentes = psicologoRepository.findByNumColegiatura(psicologoDTO.getNumColegiatura());
-        if (!existentes.isEmpty()) {
+        List<Psicologo> ColegiaturaExistente = psicologoRepository.findByNumColegiatura(psicologoDTO.getNumColegiatura());
+        if (!ColegiaturaExistente.isEmpty()) {
             throw new BadRequestException("Ya existe un psicologo con el mismo numero de colegiatura");
         }
+        //List<Psicologo> EmailExistente = psicologoRepository.findByEmail(psicologoDTO.getNumColegiatura());
+        //if (!EmailExistente.isEmpty()) {
+        //    throw new BadRequestException("Ya existe un psicologo registrado con el mismo email");
+        //}
 
         Psicologo psicologo = psicologoMapper.toEntity(psicologoDTO);
         psicologo.setCreatedAt(LocalDateTime.now());
@@ -107,7 +111,7 @@ public class PsicologoServiceImpl implements PsicologoService {
     @Override
     public void delete(Integer id) {
         Psicologo psicologo = psicologoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("El psicologo con ID " + id + " no fue encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("El psicologo con ID "+id+" no fue encontrado"));
         psicologoRepository.delete(psicologo);
     }
 
@@ -124,11 +128,9 @@ public class PsicologoServiceImpl implements PsicologoService {
         }
         return psicologoRepository.findAll();
     }
-
     @Override
     public List<PsicologoDTO> findAll() {
         List<Psicologo> psicologos = psicologoRepository.findAll();
         return psicologos.stream().map(psicologoMapper::toDto).toList();
     }
-
 }
