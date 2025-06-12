@@ -58,10 +58,10 @@ public class PsicologoServiceImpl implements PsicologoService {
         if (!ColegiaturaExistente.isEmpty()) {
             throw new BadRequestException("Ya existe un psicologo con el mismo numero de colegiatura");
         }
-        List<Psicologo> EmailExistente = psicologoRepository.findByEmail(psicologoDTO.getNumColegiatura());
-        if (!EmailExistente.isEmpty()) {
-            throw new BadRequestException("Ya existe un psicologo registrado con el mismo email");
-        }
+        //List<Psicologo> EmailExistente = psicologoRepository.findByEmail(psicologoDTO.getNumColegiatura());
+        //if (!EmailExistente.isEmpty()) {
+        //    throw new BadRequestException("Ya existe un psicologo registrado con el mismo email");
+        //}
 
         Usuario usuario = new Usuario();
         usuario.setEmail(psicologoDTO.getEmail());
