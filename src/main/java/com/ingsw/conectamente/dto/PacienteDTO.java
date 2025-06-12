@@ -16,7 +16,7 @@ public class PacienteDTO {
     private String apellido;
 
     @NotBlank(message = "El dni es requerido")
-    private String dniPaciente;
+    private String dni;
 
     @NotNull(message = "La edad es requerida")
     private Integer edad;
@@ -24,10 +24,5 @@ public class PacienteDTO {
     @Size(max = 500, message = "La descripción no puede exceder los 500 caracteres")
     private String descripcion;
 
-    // Datos Usuario
-    @NotBlank(message = "El email es requerido")
-    private String email;
-
-    @NotBlank(message = "La contraseña es requerida")
-    private String contrasenia;
 }
+
