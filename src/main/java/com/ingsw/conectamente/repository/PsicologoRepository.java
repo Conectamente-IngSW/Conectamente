@@ -11,6 +11,8 @@ public interface PsicologoRepository  extends JpaRepository<Psicologo, Integer> 
     List<Psicologo> findByDisponibilidadContaining(String disponibilidad);
     List<Psicologo> findByTarifaBetween(Float min, Float max);
     List<Psicologo> findByNumColegiatura(String numColegiatura);
+    List<Psicologo> findByEmail(String email);
+    boolean existsByNumColegiatura(String numColegiatura);
 
 }
 
