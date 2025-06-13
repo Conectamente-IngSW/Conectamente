@@ -1,0 +1,126 @@
+{
+  "src": {
+    "main": {
+      "java": {
+        "com.ingsw.conectamente": {
+          "api": [
+            "AuthController.java",
+            "CalificacionController.java",
+            "CertificadoController.java",
+            "CitaController.java",
+            "MensajeController.java",
+            "PacienteController.java",
+            "PsicologoController.java",
+            "UsuarioPerfilController.java",
+            "ConversacionController.java"
+          ],
+          "config": [
+            "ModelMapperConfig.java",
+            "WebSecurityConfig.java"
+          ],
+          "dto": [
+            "AuthResponseDTO.java",
+            "CalificacionDTO.java",
+            "CertificadoDTO.java",
+            "CitaDTO.java",
+            "LoginDTO.java",
+            "MensajeDTO.java",
+            "PacienteDTO.java",
+            "PsicologoDTO.java",
+            "UsuarioPerfilDTO.java",
+            "UsuarioRegistroDTO.java",
+            "VisualizarPacienteDTO.java",
+            "VisualizarPsicologoDTO.java",
+            "ConversacionDTO.java"
+          ],
+          "enums": [
+            "Departamento.java",
+            "Distrito.java",
+            "ERol.java",
+            "Especialidad.java",
+            "EstadoCita.java"
+          ],
+          "exception": [
+            "BadRequestException.java",
+            "CustomErrorResponse.java",
+            "GlobalExceptionHandler.java",
+            "ResourceNotFoundException.java",
+            "RoleNotFoundException.java"
+          ],
+          "mapper": [
+            "CalificacionMapper.java",
+            "CertificadoMapper.java",
+            "CitaMapper.java",
+            "MensajeMapper.java",
+            "PacienteMapper.java",
+            "PsicologoMapper.java",
+            "UsuarioMapper.java",
+            "VisualizacionPacienteMapper.java",
+            "VisualizacionPsicologoMapper.java",
+            "ConversacionMapper.java"
+          ],
+          "model": {
+            "entity": [
+              "Calificacion.java",
+              "Certificado.java",
+              "Cita.java",
+              "Direccion.java",
+              "Mensaje.java",
+              "Paciente.java",
+              "Psicologo.java",
+              "Usuario.java",
+              "Conversacion.java"
+            ]
+          },
+          "repository": [
+            "CalificacionRepository.java",
+            "CertificadoRepository.java",
+            "CitaRepository.java",
+            "MensajeRepository.java",
+            "PacienteRepository.java",
+            "PsicologoRepository.java",
+            "RolRepository.java",
+            "UsuarioRepository.java",
+            "ConversacionRepository.java"
+          ],
+          "security": [
+            "CustomUserDetailsService.java",
+            "JWTAuthenticationEntryPoint.java",
+            "JWTConfigurer.java",
+            "JWTFilter.java",
+            "TokenProvider.java",
+            "UserPrincipal.java"
+          ],
+          "service": {
+            "impl": [
+              "CalificacionServiceImpl.java",
+              "CertificadoServiceImpl.java",
+              "CitaServiceImpl.java",
+              "MensajeServiceImpl.java",
+              "PacienteServiceImpl.java",
+              "PsicologoServiceImpl.java",
+              "UsuarioServiceImpl.java",
+              "ConversacionServiceImpl.java"
+            ],
+            "interfaces": [
+              "CalificacionService.java",
+              "CertificadoService.java",
+              "CitaService.java",
+              "MensajeService.java",
+              "PacienteService.java",
+              "PsicologoService.java",
+              "UsuarioService.java",
+              "ConversacionService.java"
+            ]
+          },
+          "ConectamenteApplication.java": null
+        }
+      },
+      "resources": {
+        "static": [],
+        "templates": [],
+        "application.properties": null
+      }
+    }
+  }
+}

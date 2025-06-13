@@ -2,7 +2,6 @@ package com.ingsw.conectamente.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -17,22 +16,16 @@ public class Mensaje {
     @Column(columnDefinition = "TEXT")
     private String contenido;
 
+    @Column
     private LocalDateTime fechaEnvio;
 
     //FK
-    //@ManyToOne
-    //@JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario",
-    //        foreignKey = @ForeignKey(name = "Usuario_idUsuario" ))
-    //private Usuario Usuario_idUsuario;
-
-    //FK
     @ManyToOne
-    @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente",
-            foreignKey = @ForeignKey(name = "Paciente_idPaciente" ))
-    private Paciente paciente;
+    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario", foreignKey = @ForeignKey(name = "idMensaje_Usuario"))
+    private Usuario usuario;
 
-    @ManyToOne
-    @JoinColumn(name = "idPsicologo", referencedColumnName = "idPsicologo",
-            foreignKey = @ForeignKey(name = "Psicologo_idPsicologo" ))
-    private Psicologo psicologo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_conversacion", referencedColumnName = "idConversacion", foreignKey = @ForeignKey(name = "FK_mensaje_conversacion"))
+    private Conversacion conversacion;
 }
+
