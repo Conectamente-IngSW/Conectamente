@@ -54,20 +54,32 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public AuthResponseDTO login(LoginDTO loginDTO) {
-        //Autenticar al usuario utilizando AuthenticationManager
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword())
         );
 
-        //Una vez autenticado, el objeto Authentication contiene la informacion del usuario autenticado
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         Usuario usuario = userPrincipal.getUsuario();
 
         String token = tokenProvider.createAccessToken(authentication);
 
-        AuthResponseDTO responseDTO = new AuthResponseDTO();
+        AuthResponseDTO dto = new AuthResponseDTO();
+        dto.setToken(token);
 
-        return responseDTO;
+        if (usuario.getPaciente() != null) {
+            dto.setNombre(usuario.getPaciente().getNombre());
+            dto.setApellido(usuario.getPaciente().getApellido());
+            dto.setRol("PACIENTE");
+        } else if (usuario.getPsicologo() != null) {
+            dto.setNombre(usuario.getPsicologo().getNombre());
+            dto.setApellido(usuario.getPsicologo().getApellido());
+            dto.setRol("PSICOLOGO");
+        } else {
+            dto.setRol(usuario.getRol().getName().name()); // fallback
+        }
+
+        return dto;
+
     }
 
     @Override
