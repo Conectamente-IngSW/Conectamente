@@ -24,14 +24,19 @@ public class Paciente {
     @Column(name = "dni", nullable = false, unique = true)
     private String dni;
 
-    @Column(name = "edad", nullable = false)
+    @Column(name = "edad")
     private Integer edad;
 
     @Column(name = "descripcionPaciente", columnDefinition = "TEXT")
     private String descripcionPaciente;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
