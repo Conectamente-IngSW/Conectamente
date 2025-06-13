@@ -25,6 +25,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService {
@@ -108,6 +110,8 @@ public class UsuarioServiceImpl implements UsuarioService {
             paciente.setNombre(registroDTO.getNombre());
             paciente.setApellido(registroDTO.getApellido());
             paciente.setDni(registroDTO.getDni());
+            paciente.setEdad(registroDTO.getEdad());
+            paciente.setCreatedAt(LocalDateTime.now());
             paciente.setUsuario(usuario);
             usuario.setPaciente(paciente);
         } else if (rolEnum == ERol.PSICOLOGO) {
@@ -115,6 +119,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             psicologo.setNombre(registroDTO.getNombre());
             psicologo.setApellido(registroDTO.getApellido());
             psicologo.setNumColegiatura(registroDTO.getNumColegiatura());
+            psicologo.setCreatedAt(LocalDateTime.now());
             psicologo.setUsuario(usuario);
             usuario.setPsicologo(psicologo);
         }

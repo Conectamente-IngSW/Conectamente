@@ -21,7 +21,7 @@ public class UsuarioRegistroDTO {
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     private String password;
 
-
+    private Integer edad;
     private String dni;
     private String numColegiatura;
     private String descripcion;

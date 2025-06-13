@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/psicologo")
-@PreAuthorize("hasRole('ADMIN')") //Aplicar la restriccion a nivel de clase
+@PreAuthorize("hasRole('ADMINISTRADOR')") //Aplicar la restriccion a nivel de clase
 public class PsicologoController {
 
     private final PsicologoService psicologoService;
