@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Setter
 @Data
@@ -38,10 +37,6 @@ public class Paciente {
     private LocalDateTime updatedAt;
 
     //FK
-    //@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    //@JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario",
-     //       foreignKey = @ForeignKey(name = "Usuario_idUsuario" ))
-    //private Usuario Usuario_idUsuario;
 
     @ManyToOne
     @JoinColumn(name = "idDireccion", referencedColumnName = "idDireccion",
@@ -56,7 +51,5 @@ public class Paciente {
     //private List<Calificacion> calificaciones;
 
     //NO BORRAR, descomentar cuando esté implementado junto a Citas
-    //@OneToMany(mappedBy = "cita", cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<Cita> citas;
 
 }

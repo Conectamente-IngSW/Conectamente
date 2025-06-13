@@ -2,8 +2,6 @@ package com.ingsw.conectamente.mapper;
 
 import com.ingsw.conectamente.dto.MensajeDTO;
 import com.ingsw.conectamente.model.entity.Mensaje;
-import com.ingsw.conectamente.model.entity.Paciente;
-import com.ingsw.conectamente.model.entity.Psicologo;
 import com.ingsw.conectamente.model.entity.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

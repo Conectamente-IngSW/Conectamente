@@ -4,14 +4,11 @@ package com.ingsw.conectamente.service.impl;
 import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.dto.VisualizarPsicologoDTO;
 import com.ingsw.conectamente.enums.Especialidad;
-import com.ingsw.conectamente.enums.ERol;
-import com.ingsw.conectamente.model.entity.Rol;
 import com.ingsw.conectamente.exception.BadRequestException;
 import com.ingsw.conectamente.exception.ResourceNotFoundException;
 import com.ingsw.conectamente.mapper.PsicologoMapper;
 import com.ingsw.conectamente.mapper.VisualizacionPsicologoMapper;
 import com.ingsw.conectamente.model.entity.Psicologo;
-import com.ingsw.conectamente.model.entity.Usuario;
 import com.ingsw.conectamente.repository.PsicologoRepository;
 import com.ingsw.conectamente.repository.UsuarioRepository;
 import com.ingsw.conectamente.service.PsicologoService;
@@ -59,10 +56,6 @@ public class PsicologoServiceImpl implements PsicologoService {
         if (!ColegiaturaExistente.isEmpty()) {
             throw new BadRequestException("Ya existe un psicologo con el mismo numero de colegiatura");
         }
-        //List<Psicologo> EmailExistente = psicologoRepository.findByEmail(psicologoDTO.getNumColegiatura());
-        //if (!EmailExistente.isEmpty()) {
-        //    throw new BadRequestException("Ya existe un psicologo registrado con el mismo email");
-        //}
 
         Psicologo psicologo = psicologoMapper.toEntity(psicologoDTO);
         psicologo.setCreatedAt(LocalDateTime.now());

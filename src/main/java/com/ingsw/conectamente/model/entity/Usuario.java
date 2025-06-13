@@ -1,6 +1,5 @@
 package com.ingsw.conectamente.model.entity;
 
-import com.ingsw.conectamente.enums.ERol;
 import jakarta.persistence.*;
 import lombok.Data;
 

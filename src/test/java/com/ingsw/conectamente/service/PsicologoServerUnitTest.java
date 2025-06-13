@@ -2,7 +2,7 @@ package com.ingsw.conectamente.service;
 
 import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.enums.Especialidad;
-import com.ingsw.conectamente.enums.ERol;
+
 import com.ingsw.conectamente.exception.BadRequestException;
 import com.ingsw.conectamente.exception.ResourceNotFoundException;
 import com.ingsw.conectamente.mapper.PsicologoMapper;
@@ -23,7 +23,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -60,14 +59,11 @@ public class PsicologoServerUnitTest {
         dto.setDescripcion("Psicóloga especializada");
         dto.setTarifa(150.0f);
         dto.setEspecialidad(Especialidad.CLINICA);
-        //dto.setEmail("ana@example.com");
-        //dto.setContrasenia("securepass");
+;
 
         usuarioMock = new Usuario();
         usuarioMock.setIdUsuario(1);
-        //usuarioMock.setEmail(dto.getEmail());
-        //usuarioMock.setContrasenia(dto.getContrasenia());
-        //usuarioMock.setRol(ERol.PSICOLOGO);
+
 
         entityMock = new Psicologo();
         entityMock.setIdPsicologo(10);
@@ -75,7 +71,7 @@ public class PsicologoServerUnitTest {
 
     /*
     ///////// USER STORY 02
-    @Test
+    @Test*/
     @DisplayName("CP01 - Crear psicólogo con datos válidos")
     void testCrearPsicologo_exitoso() {
         when(psicologoRepository.findByNumColegiatura(dto.getNumColegiatura()))
@@ -105,7 +101,7 @@ public class PsicologoServerUnitTest {
         verify(psicologoMapper).toEntity(dto);
         verify(psicologoRepository).save(any(Psicologo.class));
         verify(psicologoMapper).toDto(entityMock);
-    }*/
+    }
 
     @Test
     @DisplayName("CP02 - No se debe registrar psicólogo si ya existe colegiatura")

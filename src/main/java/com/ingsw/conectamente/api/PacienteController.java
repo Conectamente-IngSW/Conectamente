@@ -1,9 +1,7 @@
 package com.ingsw.conectamente.api;
 
 import com.ingsw.conectamente.dto.PacienteDTO;
-import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.dto.VisualizarPacienteDTO;
-import com.ingsw.conectamente.model.entity.Paciente;
 import com.ingsw.conectamente.service.PacienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

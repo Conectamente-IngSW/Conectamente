@@ -1,6 +1,5 @@
 package com.ingsw.conectamente.service;
 
-import com.ingsw.conectamente.dto.CalificacionDTO;
 import com.ingsw.conectamente.dto.CitaDTO;
 
 import java.util.List;

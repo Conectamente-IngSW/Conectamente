@@ -1,5 +1,4 @@
 package com.ingsw.conectamente.mapper;
-import com.ingsw.conectamente.dto.VisualizarPsicologoDTO;
 import org.modelmapper.ModelMapper;
 import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.model.entity.Psicologo;

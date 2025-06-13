@@ -1,9 +1,7 @@
 package com.ingsw.conectamente.mapper;
 
 import com.ingsw.conectamente.dto.CitaDTO;
-import com.ingsw.conectamente.dto.PacienteDTO;
 import com.ingsw.conectamente.model.entity.Cita;
-import com.ingsw.conectamente.model.entity.Paciente;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

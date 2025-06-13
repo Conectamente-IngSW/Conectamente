@@ -71,19 +71,11 @@ public class PacienteServiceImpl implements PacienteService {
         pacienteFromDb.setDescripcionPaciente(updatePacienteDTO.getDescripcion());
         pacienteFromDb.setUpdatedAt(LocalDateTime.now());
 
-        // Datos del usuario
-        //usuario.setEmail(updatePacienteDTO.getEmail());
-        //usuario.setContrasenia(updatePacienteDTO.getContrasenia());
-
         // Guardar cambios
         Paciente pacienteActualizado=pacienteRepository.save(pacienteFromDb);
         usuarioRepository.save(usuario);
 
-        // Mapear y devolver DTO con email y contraseña incluidos
-        //PacienteDTO dto = pacienteMapper.toDto(pacienteFromDb);
-        //dto.setEmail(usuario.getEmail());
-        //dto.setContrasenia(usuario.getContrasenia());
-        //return dto;
+
         return pacienteMapper.toDto(pacienteActualizado);
     }
 

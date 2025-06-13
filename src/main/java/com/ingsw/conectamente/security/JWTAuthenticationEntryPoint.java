@@ -15,8 +15,6 @@ import org.springframework.security.core.AuthenticationException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-import static org.apache.poi.hemf.record.emfplus.HemfPlusRecordType.object;
-
 @Component
 public class JWTAuthenticationEntryPoint implements AuthenticationEntryPoint {
 

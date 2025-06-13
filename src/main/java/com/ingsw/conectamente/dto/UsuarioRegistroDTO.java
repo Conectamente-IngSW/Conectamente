@@ -1,8 +1,5 @@
 package com.ingsw.conectamente.dto;
 
-import com.ingsw.conectamente.enums.Departamento;
-import com.ingsw.conectamente.enums.Distrito;
-import com.ingsw.conectamente.enums.ERol;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

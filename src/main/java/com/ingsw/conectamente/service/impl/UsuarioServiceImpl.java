@@ -96,7 +96,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         Rol rol = rolRepository.findByName(rolEnum)
-                .orElseThrow(() -> new RoleNotFoundException("Error: Rol no encontrado: "));;
+                .orElseThrow(() -> new RoleNotFoundException("Error: Rol no encontrado: "));
 
         registroDTO.setPassword(passwordEncoder.encode(registroDTO.getPassword()));
 

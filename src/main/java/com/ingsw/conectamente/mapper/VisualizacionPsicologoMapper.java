@@ -1,8 +1,6 @@
 package com.ingsw.conectamente.mapper;
 
-import com.ingsw.conectamente.dto.VisualizarPacienteDTO;
 import com.ingsw.conectamente.dto.VisualizarPsicologoDTO;
-import com.ingsw.conectamente.model.entity.Paciente;
 import com.ingsw.conectamente.model.entity.Psicologo;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

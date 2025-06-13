@@ -1,9 +1,7 @@
 package com.ingsw.conectamente.api;
 
 import com.ingsw.conectamente.dto.CalificacionDTO;
-import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.service.CalificacionService;
-import com.ingsw.conectamente.service.PsicologoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
