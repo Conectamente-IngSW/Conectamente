@@ -2,7 +2,6 @@ package com.ingsw.conectamente.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -22,7 +21,11 @@ public class Mensaje {
 
     //FK
     @ManyToOne
-    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario",
-            foreignKey = @ForeignKey(name = "Usuario_idUsuario"))
-    private Usuario Usuario_idUsuario;
+    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario", foreignKey = @ForeignKey(name = "idMensaje_Usuario"))
+    private Usuario usuario;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_conversacion", referencedColumnName = "idConversacion", foreignKey = @ForeignKey(name = "FK_mensaje_conversacion"))
+    private Conversacion conversacion;
 }
+

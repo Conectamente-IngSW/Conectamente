@@ -1,11 +1,10 @@
+// src/main/java/com/ingsw/conectamente/service/impl/MensajeServiceImpl.java
 package com.ingsw.conectamente.service.impl;
 
 import com.ingsw.conectamente.model.entity.Mensaje;
 import com.ingsw.conectamente.repository.MensajeRepository;
 import com.ingsw.conectamente.service.MensajeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MensajeServiceImpl implements MensajeService {
+
     private final MensajeRepository mensajeRepository;
 
     @Override
@@ -22,11 +22,11 @@ public class MensajeServiceImpl implements MensajeService {
 
     @Override
     public List<Mensaje> findMensajeByUsuarioId(Integer idUsuario) {
-        return mensajeRepository.findMensajeByUsuarioId(idUsuario);
+        return mensajeRepository.findByUsuario_IdUsuario(idUsuario);
     }
 
     @Override
     public void deleteMensajeByUsuarioId(Integer idUsuario) {
-        mensajeRepository.deleteMensajeByUsuarioId(idUsuario);
+        mensajeRepository.deleteByUsuario_IdUsuario(idUsuario);
     }
 }
