@@ -120,6 +120,7 @@
         "static": [],
         "templates": [],
         "application.properties": null
+        "data-test.sql"
       }
     }
   }

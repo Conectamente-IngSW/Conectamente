@@ -1,6 +1,7 @@
 package com.ingsw.conectamente.mapper;
 
 import com.ingsw.conectamente.dto.ConversacionDTO;
+import com.ingsw.conectamente.dto.CrearConversacionDTO;
 import com.ingsw.conectamente.model.entity.Conversacion;
 import com.ingsw.conectamente.model.entity.Paciente;
 import com.ingsw.conectamente.model.entity.Psicologo;
@@ -23,20 +24,16 @@ public class ConversacionMapper {
         dto.setFechaCreacion(conversacion.getFechaCreacion());
 
         if (conversacion.getMensajes() != null) {
-            dto.setMensajes(conversacion.getMensajes().stream().map(mensajeMapper::toDto).collect(Collectors.toList()));
+            dto.setMensajes(conversacion.getMensajes().stream()
+                    .map(mensajeMapper::toDto)
+                    .collect(Collectors.toList()));
         }
 
         return dto;
     }
 
-
-    public Conversacion toEntity(ConversacionDTO dto) {
+    public Conversacion toEntity(CrearConversacionDTO dto) {
         Conversacion conversacion = new Conversacion();
-
-        if (dto.getIdConversacion() != null) {
-            conversacion.setIdConversacion(dto.getIdConversacion());
-        }
-
         Paciente paciente = new Paciente();
         paciente.setIdPaciente(dto.getPacienteId());
         conversacion.setPaciente(paciente);

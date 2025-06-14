@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,7 +25,13 @@ public class ConversacionServiceImpl implements ConversacionService {
 
     @Override
     @Transactional
-    public Conversacion createConversacion(Conversacion conversacion) {
+    public Conversacion crearConversacion(Conversacion conversacion) {
+        // 1) Fija siempre el id a null para forzar INSERT
+        conversacion.setIdConversacion(null);
+        // 2) Genera la fecha de creación aquí
+        conversacion.setFechaCreacion(LocalDateTime.now());
+
+        // Luego valida que existan paciente y psicólogo
         Integer pacienteId = conversacion.getPaciente().getIdPaciente();
         Integer psicologoId = conversacion.getPsicologo().getIdPsicologo();
 
@@ -35,6 +42,8 @@ public class ConversacionServiceImpl implements ConversacionService {
 
         conversacion.setPaciente(paciente);
         conversacion.setPsicologo(psicologo);
+
+        // Y al guardarlo, Hibernate sabrá que debe hacer un INSERT
         return conversacionRepository.save(conversacion);
     }
 

@@ -48,14 +48,12 @@ public class PacienteServiceUnitTest {
     @DisplayName("Crear paciente con éxito")
     void createPaciente_success() {
         PacienteDTO dto = new PacienteDTO();
-        dto.setIdPaciente(1);
+        dto.setIdPaciente(6);
         dto.setNombre("Ana");
         dto.setApellido("Pérez");
-        dto.setDniPaciente("12345678");
+        dto.setDni("12345678");
         dto.setEdad(25);
         dto.setDescripcion("Paciente con ansiedad");
-        dto.setEmail("ana@mail.com");
-        dto.setContrasenia("1234");
 
         when(pacienteRepository.findByIdPaciente(1)).thenReturn(List.of());
         when(usuarioRepository.save(any())).thenAnswer(inv -> {
@@ -90,8 +88,8 @@ public class PacienteServiceUnitTest {
     void findPacienteById_success() {
         Paciente paciente = new Paciente();
         paciente.setIdPaciente(1);
-        paciente.setNombrePaciente("Ana");
-        paciente.setApellidoPaciente("Lopez");
+        paciente.setNombre("Ana");
+        paciente.setApellido("Lopez");
 
         VisualizarPacienteDTO dto = new VisualizarPacienteDTO();
         dto.setNombre("Ana");
@@ -136,7 +134,7 @@ public class PacienteServiceUnitTest {
         PacienteDTO dto = new PacienteDTO();
         dto.setNombre("Luis");
         dto.setApellido("Gomez");
-        dto.setDniPaciente("87654321");
+        dto.setDni("87654321");
         dto.setEdad(30);
         dto.setDescripcion("Paciente actualizado");
 

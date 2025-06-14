@@ -1,6 +1,7 @@
 package com.ingsw.conectamente.api;
 
 import com.ingsw.conectamente.dto.ConversacionDTO;
+import com.ingsw.conectamente.dto.CrearConversacionDTO;
 import com.ingsw.conectamente.mapper.ConversacionMapper;
 import com.ingsw.conectamente.model.entity.Conversacion;
 import com.ingsw.conectamente.service.ConversacionService;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/conversaciones")
+@RequestMapping("/conversaciones")
 @RequiredArgsConstructor
 @Validated
 public class ConversacionController {
@@ -25,9 +26,9 @@ public class ConversacionController {
 
     @PostMapping
     public ResponseEntity<ConversacionDTO> crearConversacion(
-            @Valid @RequestBody ConversacionDTO dto) {
+            @Valid @RequestBody CrearConversacionDTO dto) {
         Conversacion entidad = conversacionMapper.toEntity(dto);
-        Conversacion creada = conversacionService.createConversacion(entidad);
+        Conversacion creada = conversacionService.crearConversacion(entidad);
         ConversacionDTO respuesta = conversacionMapper.toDto(creada);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
