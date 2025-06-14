@@ -77,8 +77,9 @@ public class PacienteServiceUnitTest {
     @DisplayName("No se debe crear paciente duplicado")
     void createPaciente_duplicateId() {
         PacienteDTO dto = new PacienteDTO();
-        dto.setIdPaciente(1);
-        when(pacienteRepository.findByIdPaciente(1)).thenReturn(List.of(new Paciente()));
+        dto.setDni("12345678"); // este DNI ya existe
+
+        when(pacienteRepository.findByDni("12345678")).thenReturn(List.of(new Paciente()));
 
         assertThrows(BadRequestException.class, () -> pacienteService.create(dto));
     }
