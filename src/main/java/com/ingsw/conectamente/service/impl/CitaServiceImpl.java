@@ -103,7 +103,7 @@ public class CitaServiceImpl implements CitaService {
     @Override
     public void delete(Integer id) {
         Cita cita = citaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("La cita con ID " + id + " no fue encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("La cita con ID " + id + " no fue encontrado"));
         citaRepository.delete(cita);
     }
 }
