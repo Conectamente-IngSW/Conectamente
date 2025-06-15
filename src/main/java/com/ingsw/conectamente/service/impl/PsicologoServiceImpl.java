@@ -4,18 +4,15 @@ package com.ingsw.conectamente.service.impl;
 import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.dto.VisualizarPsicologoDTO;
 import com.ingsw.conectamente.enums.Especialidad;
-import com.ingsw.conectamente.enums.Rol;
 import com.ingsw.conectamente.exception.BadRequestException;
 import com.ingsw.conectamente.exception.ResourceNotFoundException;
 import com.ingsw.conectamente.mapper.PsicologoMapper;
 import com.ingsw.conectamente.mapper.VisualizacionPsicologoMapper;
 import com.ingsw.conectamente.model.entity.Psicologo;
-import com.ingsw.conectamente.model.entity.Usuario;
 import com.ingsw.conectamente.repository.PsicologoRepository;
 import com.ingsw.conectamente.repository.UsuarioRepository;
 import com.ingsw.conectamente.service.PsicologoService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Cascade;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -51,6 +48,7 @@ public class PsicologoServiceImpl implements PsicologoService {
         Page<Psicologo> psicologos = psicologoRepository.findAll(pageable);
         return psicologos.map(psicologoMapper::toDto);
     }
+
     @Transactional
     @Override
     public PsicologoDTO create(PsicologoDTO psicologoDTO) {
@@ -58,16 +56,6 @@ public class PsicologoServiceImpl implements PsicologoService {
         if (!ColegiaturaExistente.isEmpty()) {
             throw new BadRequestException("Ya existe un psicologo con el mismo numero de colegiatura");
         }
-        //List<Psicologo> EmailExistente = psicologoRepository.findByEmail(psicologoDTO.getNumColegiatura());
-        //if (!EmailExistente.isEmpty()) {
-        //    throw new BadRequestException("Ya existe un psicologo registrado con el mismo email");
-        //}
-
-        Usuario usuario = new Usuario();
-        usuario.setEmail(psicologoDTO.getEmail());
-        usuario.setContrasenia(psicologoDTO.getContrasenia());
-        usuario.setRol(Rol.PSICOLOGO);
-        usuario = usuarioRepository.save(usuario);
 
         Psicologo psicologo = psicologoMapper.toEntity(psicologoDTO);
         psicologo.setCreatedAt(LocalDateTime.now());
@@ -97,9 +85,9 @@ public class PsicologoServiceImpl implements PsicologoService {
         }
 
         // Actualizar campos básicos
-        psicologoFromDb.setNombrePsicologo(updatePsicologoDTO.getNombre());
-        psicologoFromDb.setApellidoPsicologo(updatePsicologoDTO.getApellido());
-        psicologoFromDb.setEdadPsicologo(updatePsicologoDTO.getEdad());
+        psicologoFromDb.setNombre(updatePsicologoDTO.getNombre());
+        psicologoFromDb.setApellido(updatePsicologoDTO.getApellido());
+        psicologoFromDb.setEdad(updatePsicologoDTO.getEdad());
         psicologoFromDb.setDisponibilidad(updatePsicologoDTO.getDisponibilidad());
         psicologoFromDb.setDescripcionPsicologo(updatePsicologoDTO.getDescripcion());
         psicologoFromDb.setTarifa(updatePsicologoDTO.getTarifa());
@@ -133,9 +121,11 @@ public class PsicologoServiceImpl implements PsicologoService {
         }
         return psicologoRepository.findAll();
     }
+
     @Override
     public List<PsicologoDTO> findAll() {
         List<Psicologo> psicologos = psicologoRepository.findAll();
         return psicologos.stream().map(psicologoMapper::toDto).toList();
     }
+
 }

@@ -2,7 +2,6 @@ package com.ingsw.conectamente.model.entity;
 
 import com.ingsw.conectamente.enums.Departamento;
 import com.ingsw.conectamente.enums.Distrito;
-import com.ingsw.conectamente.enums.Especialidad;
 import jakarta.persistence.*;
 import lombok.Data;
 

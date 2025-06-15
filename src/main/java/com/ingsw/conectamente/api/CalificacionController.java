@@ -1,13 +1,12 @@
 package com.ingsw.conectamente.api;
 
 import com.ingsw.conectamente.dto.CalificacionDTO;
-import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.service.CalificacionService;
-import com.ingsw.conectamente.service.PsicologoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/calificaciones")
+@PreAuthorize("hasAnyRole('ADMINISTRADOR', 'PACIENTE')") // Restriction at class level
 public class CalificacionController {
     private final CalificacionService calificacionService;
 

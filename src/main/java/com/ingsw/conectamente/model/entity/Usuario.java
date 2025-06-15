@@ -1,6 +1,5 @@
 package com.ingsw.conectamente.model.entity;
 
-import com.ingsw.conectamente.enums.Rol;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,14 +11,21 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    private String contrasenia;
+    private String password;
 
-    //FK
-    @Enumerated(EnumType.STRING)
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Paciente paciente;
+
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Psicologo psicologo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idRol", referencedColumnName = "idRol",
+                foreignKey = @ForeignKey(name = "Rol_idRol"))
     private Rol rol;
+
 
 }

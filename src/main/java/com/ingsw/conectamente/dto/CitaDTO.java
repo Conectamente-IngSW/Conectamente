@@ -1,15 +1,10 @@
 package com.ingsw.conectamente.dto;
 
-import com.ingsw.conectamente.enums.EstadoCita;
-import com.ingsw.conectamente.model.entity.Paciente;
-import com.ingsw.conectamente.model.entity.Psicologo;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data

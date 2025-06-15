@@ -1,14 +1,13 @@
 package com.ingsw.conectamente.api;
 
 import com.ingsw.conectamente.dto.PacienteDTO;
-import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.dto.VisualizarPacienteDTO;
-import com.ingsw.conectamente.model.entity.Paciente;
 import com.ingsw.conectamente.service.PacienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/paciente")
+@PreAuthorize("hasAnyRole('ADMINISTRADOR', 'PACIENTE')") // Restriction at class level
 public class PacienteController {
     private final PacienteService pacienteService;
 
