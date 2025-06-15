@@ -10,6 +10,7 @@ import com.ingsw.conectamente.repository.CitaRepository;
 import com.ingsw.conectamente.repository.PacienteRepository;
 import com.ingsw.conectamente.repository.PsicologoRepository;
 import com.ingsw.conectamente.service.impl.CitaServiceImpl;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,9 +43,18 @@ class CitaServiceUnitTest {
     @InjectMocks
     private CitaServiceImpl citaService;
 
+    private AutoCloseable mocks;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        if (mocks != null) {
+            mocks.close(); // <-- Close after each test
+        }
     }
 
     private CitaDTO ejemploDto() {
