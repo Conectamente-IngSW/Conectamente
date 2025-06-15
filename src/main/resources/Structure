@@ -31,7 +31,8 @@
             "UsuarioRegistroDTO.java",
             "VisualizarPacienteDTO.java",
             "VisualizarPsicologoDTO.java",
-            "ConversacionDTO.java"
+            "ConversacionDTO.java",
+            "CrearConversacionDTO.java";
           ],
           "enums": [
             "Departamento.java",
@@ -69,7 +70,8 @@
               "Paciente.java",
               "Psicologo.java",
               "Usuario.java",
-              "Conversacion.java"
+              "Rol.java",
+              "Conversacion.java";
             ]
           },
           "repository": [
@@ -102,7 +104,6 @@
               "UsuarioServiceImpl.java",
               "ConversacionServiceImpl.java"
             ],
-            "interfaces": [
               "CalificacionService.java",
               "CertificadoService.java",
               "CitaService.java",
@@ -111,7 +112,7 @@
               "PsicologoService.java",
               "UsuarioService.java",
               "ConversacionService.java"
-            ]
+
           },
           "ConectamenteApplication.java": null
         }
