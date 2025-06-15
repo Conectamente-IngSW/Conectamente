@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ingsw</groupId>
-    <artifactId>Conectamente</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Conectamente</name>
-    <description>Conectamente</description>
+    <artifactId>Conectamente-api</artifactId>
+    <version>0.0.1</version>
+    <name>Conectamente-api</name>
+    <description>Conectamente-api</description>
     <url/>
     <licenses>
         <license/>
