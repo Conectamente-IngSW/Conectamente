@@ -45,7 +45,7 @@ public class PacienteServiceUnitTest {
     }
 
     @Test
-    @DisplayName("Crear paciente con éxito")
+    @DisplayName("CP01: Crear paciente con éxito")
     void createPaciente_success() {
         PacienteDTO dto = new PacienteDTO();
         dto.setIdPaciente(6);
@@ -74,7 +74,7 @@ public class PacienteServiceUnitTest {
     }
 
     @Test
-    @DisplayName("No se debe crear paciente duplicado")
+    @DisplayName("CP02: No se debe crear paciente duplicado")
     void createPaciente_duplicateId() {
         PacienteDTO dto = new PacienteDTO();
         dto.setDni("12345678"); // este DNI ya existe
@@ -85,7 +85,7 @@ public class PacienteServiceUnitTest {
     }
 
     @Test
-    @DisplayName("Buscar paciente por ID con éxito")
+    @DisplayName("CP03: Buscar paciente por ID con éxito")
     void findPacienteById_success() {
         Paciente paciente = new Paciente();
         paciente.setIdPaciente(1);
@@ -107,7 +107,7 @@ public class PacienteServiceUnitTest {
     }
 
     @Test
-    @DisplayName("Buscar paciente por ID no encontrado")
+    @DisplayName("CP04: Buscar paciente por ID no encontrado")
     void findPacienteById_notFound() {
         when(pacienteRepository.findById(1)).thenReturn(Optional.empty());
 
@@ -115,7 +115,7 @@ public class PacienteServiceUnitTest {
     }
 
     @Test
-    @DisplayName("Obtener todos los pacientes")
+    @DisplayName("CP05: Obtener todos los pacientes")
     void getAllPacientes_success() {
         List<Paciente> pacientes = List.of(new Paciente(), new Paciente());
         when(pacienteRepository.findAll()).thenReturn(pacientes);
@@ -127,7 +127,7 @@ public class PacienteServiceUnitTest {
     }
 
     @Test
-    @DisplayName("Actualizar paciente con éxito")
+    @DisplayName("CP06: Actualizar paciente con éxito")
     void updatePaciente_success() {
         Paciente existing = new Paciente();
         existing.setIdPaciente(1);
@@ -150,7 +150,7 @@ public class PacienteServiceUnitTest {
     }
 
     @Test
-    @DisplayName("Actualizar paciente no encontrado")
+    @DisplayName("CP07: Actualizar paciente no encontrado")
     void updatePaciente_notFound() {
         when(pacienteRepository.findById(1)).thenReturn(Optional.empty());
 
@@ -159,7 +159,7 @@ public class PacienteServiceUnitTest {
     }
 
     @Test
-    @DisplayName("Eliminar paciente con éxito")
+    @DisplayName("CP08: Eliminar paciente con éxito")
     void deletePaciente_success() {
         Paciente paciente = new Paciente();
         paciente.setIdPaciente(1);
@@ -170,7 +170,7 @@ public class PacienteServiceUnitTest {
     }
 
     @Test
-    @DisplayName("Eliminar paciente no encontrado")
+    @DisplayName("CP09: Eliminar paciente no encontrado")
     void deletePaciente_notFound() {
         when(pacienteRepository.findById(1)).thenReturn(Optional.empty());
 

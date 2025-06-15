@@ -37,7 +37,7 @@ public class CalificacionServerUnitTest {
     }
 
     @Test
-    @DisplayName("Crear calificación con éxito")
+    @DisplayName("CP01: Crear calificación con éxito")
     void createCalificacion_success() {
         CalificacionDTO dto = new CalificacionDTO();
         dto.setPuntaje(5);
@@ -64,7 +64,7 @@ public class CalificacionServerUnitTest {
     }
 
     @Test
-    @DisplayName("Buscar calificación por ID con éxito")
+    @DisplayName("CP02: Buscar calificación por ID con éxito")
     void findCalificacionById_found() {
         Calificacion entity = new Calificacion();
         entity.setIdCalificacion(1);
@@ -81,7 +81,7 @@ public class CalificacionServerUnitTest {
     }
 
     @Test
-    @DisplayName("Buscar calificación por ID no encontrada")
+    @DisplayName("CP03: Buscar calificación por ID no encontrada")
     void findCalificacionById_notFound() {
         when(calificacionRepository.findById(1)).thenReturn(Optional.empty());
 
@@ -89,7 +89,7 @@ public class CalificacionServerUnitTest {
     }
 
     @Test
-    @DisplayName("Buscar calificaciones por ID de psicólogo")
+    @DisplayName("CP04: Buscar calificaciones por ID de psicólogo")
     void findCalificacionesByPsicologoId_success() {
         List<Calificacion> calificaciones = List.of(new Calificacion(), new Calificacion());
         when(calificacionRepository.findByPsicologoIdPsicologo(1)).thenReturn(calificaciones);
@@ -101,7 +101,7 @@ public class CalificacionServerUnitTest {
     }
 
     @Test
-    @DisplayName("Actualizar calificación con éxito")
+    @DisplayName("CP05: Actualizar calificación con éxito")
     void updateCalificacion_success() {
         CalificacionDTO dto = new CalificacionDTO();
         dto.setPuntaje(4);
@@ -123,7 +123,7 @@ public class CalificacionServerUnitTest {
     }
 
     @Test
-    @DisplayName("Actualizar calificación no encontrada")
+    @DisplayName("CP06: Actualizar calificación no encontrada")
     void updateCalificacion_notFound() {
         CalificacionDTO dto = new CalificacionDTO();
         dto.setPuntaje(5);
@@ -134,7 +134,7 @@ public class CalificacionServerUnitTest {
     }
 
     @Test
-    @DisplayName("Eliminar calificación con éxito")
+    @DisplayName("CP07: Eliminar calificación con éxito")
     void deleteCalificacion_success() {
         Calificacion calificacion = new Calificacion();
         calificacion.setIdCalificacion(1);
@@ -146,7 +146,7 @@ public class CalificacionServerUnitTest {
     }
 
     @Test
-    @DisplayName("Eliminar calificación no encontrada")
+    @DisplayName("CP08: Eliminar calificación no encontrada")
     void deleteCalificacion_notFound() {
         when(calificacionRepository.findById(1)).thenReturn(Optional.empty());
 

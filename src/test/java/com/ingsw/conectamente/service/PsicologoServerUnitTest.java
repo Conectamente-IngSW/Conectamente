@@ -69,38 +69,46 @@ public class PsicologoServerUnitTest {
         entityMock.setIdPsicologo(10);
     }
 
-    /*
+
     ///////// USER STORY 02
-    @Test*/
+    @Test
     @DisplayName("CP01 - Crear psicólogo con datos válidos")
     void testCrearPsicologo_exitoso() {
-        when(psicologoRepository.findByNumColegiatura(dto.getNumColegiatura()))
-                .thenReturn(Collections.emptyList());
+        PsicologoDTO dto = new PsicologoDTO();
+        dto.setNombre("Ana");
+        dto.setApellido("Pérez");
+        dto.setDni("87654321");
+        dto.setEdad(30);
+        dto.setDescripcion("Especialista en ansiedad");
+        dto.setNumColegiatura("PSI12345");
+        dto.setEspecialidad(Especialidad.CLINICA);
+        dto.setDisponibilidad("mañana");
 
-        when(usuarioRepository.save(any(Usuario.class)))
-                .thenReturn(usuarioMock);
+        // Simular que no hay duplicados de colegiatura
+        when(psicologoRepository.findByNumColegiatura(dto.getNumColegiatura())).thenReturn(List.of());
 
-        when(psicologoMapper.toEntity(dto))
-                .thenReturn(entityMock);
+        // Simular guardado del usuario
+        when(usuarioRepository.save(any())).thenAnswer(inv -> {
+            Usuario u = inv.getArgument(0);
+            u.setIdUsuario(100);
+            return u;
+        });
 
-        when(psicologoRepository.save(any(Psicologo.class)))
-                .thenReturn(entityMock);
+        // Simular conversión y guardado
+        Psicologo entity = new Psicologo();
+        when(psicologoMapper.toEntity(dto)).thenReturn(entity);
+        when(psicologoRepository.save(any())).thenReturn(entity);
+        when(psicologoMapper.toDto(entity)).thenReturn(dto);
 
-        when(psicologoMapper.toDto(entityMock))
-                .thenReturn(dto);
-
-        // Act
+        // Ejecutar
         PsicologoDTO result = psicologoService.create(dto);
 
-        // Assert
+        // Verificar resultado
         assertNotNull(result);
         assertEquals("Ana", result.getNombre());
 
         verify(psicologoRepository).findByNumColegiatura(dto.getNumColegiatura());
-        verify(usuarioRepository).save(any(Usuario.class));
-        verify(psicologoMapper).toEntity(dto);
-        verify(psicologoRepository).save(any(Psicologo.class));
-        verify(psicologoMapper).toDto(entityMock);
+        verify(psicologoRepository).save(any());
     }
 
     @Test
@@ -115,7 +123,8 @@ public class PsicologoServerUnitTest {
             psicologoService.create(dto);
         });
 
-        assertEquals("Ya existe un psicologo con el mismo numero de colegiatura", exception.getMessage());
+        assertEquals("Ya existe un psicologo con el mismo numero de colegiatura",
+                exception.getMessage());
 
         // Verificamos que no se intente guardar el usuario ni el psicólogo
         verify(usuarioRepository, never()).save(any(Usuario.class));
@@ -186,7 +195,8 @@ public class PsicologoServerUnitTest {
             psicologoService.update(idPsicologo, dto);
         });
 
-        assertEquals("Ya existe un psicólogo con el mismo número de colegiatura", exception.getMessage());
+        assertEquals("Ya existe un psicólogo con el mismo número de colegiatura",
+                exception.getMessage());
 
         verify(psicologoRepository).findById(idPsicologo);
         verify(psicologoRepository).findByNumColegiatura("1234567890");
@@ -343,7 +353,10 @@ public class PsicologoServerUnitTest {
 
         when(psicologoRepository.findByEspecialidad(especialidad)).thenReturn(List.of(p1));
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad, null, null, null);
+        List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad,
+                null,
+                null,
+                null);
 
         assertEquals(1, result.size());
         assertEquals(especialidad, result.get(0).getEspecialidad());
@@ -359,7 +372,11 @@ public class PsicologoServerUnitTest {
 
         when(psicologoRepository.findByDisponibilidadContaining(disponibilidad)).thenReturn(List.of(p1));
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(null, disponibilidad, null, null);
+        List<Psicologo> result = psicologoService.buscarPorFiltros(
+                null,
+                disponibilidad,
+                null,
+                null);
 
         assertEquals(1, result.size());
         assertEquals(disponibilidad, result.get(0).getDisponibilidad());
@@ -400,7 +417,10 @@ public class PsicologoServerUnitTest {
 
         when(psicologoRepository.findAll()).thenReturn(List.of(p1, p2));
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(null, null, null, null);
+        List<Psicologo> result = psicologoService.buscarPorFiltros(null,
+                null,
+                null,
+                null);
 
         assertEquals(2, result.size());
         verify(psicologoRepository, times(1)).findAll();
@@ -413,7 +433,10 @@ public class PsicologoServerUnitTest {
 
         when(psicologoRepository.findByEspecialidad(Especialidad.CLINICA)).thenReturn(vacio);
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(Especialidad.CLINICA, null, 10f, 50f);
+        List<Psicologo> result = psicologoService.buscarPorFiltros(Especialidad.CLINICA,
+                null,
+                10f,
+                50f);
 
         // Solo se aplicará especialidad (según tu implementación actual), y no tarifa.
         assertTrue(result.isEmpty());
@@ -433,7 +456,10 @@ public class PsicologoServerUnitTest {
         when(psicologoRepository.findByEspecialidad(especialidad)).thenReturn(List.of(p));
         when(psicologoRepository.findByDisponibilidadContaining(disponibilidad)).thenReturn(List.of(p));
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad, disponibilidad, null, null);
+        List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad,
+                disponibilidad,
+                null,
+                null);
 
         assertEquals(1, result.size());
         assertEquals(especialidad, result.get(0).getEspecialidad());
@@ -449,7 +475,10 @@ public class PsicologoServerUnitTest {
         when(psicologoRepository.findByEspecialidad(especialidad)).thenReturn(Collections.emptyList());
         when(psicologoRepository.findByDisponibilidadContaining(disponibilidad)).thenReturn(Collections.emptyList());
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad, disponibilidad, null, null);
+        List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad,
+                disponibilidad,
+                null,
+                null);
 
         assertTrue(result.isEmpty());
     }
