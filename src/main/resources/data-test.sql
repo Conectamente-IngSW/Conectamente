@@ -100,3 +100,57 @@ VALUES
     (3, 5, 5, 3, '2025-06-16 14:10:00', 'Buena experiencia.'),
     (4, 4, 1, 5, '2025-06-15 09:30:00', 'Me ayudó muchísimo.'),
     (5, 5, 4, 4, '2025-06-16 14:20:00', 'Enfoque profesional.');
+
+-- Psicologo
+SELECT setval(
+               pg_get_serial_sequence('public.psicologo', 'id_psicologo'),
+               (SELECT COALESCE(MAX(id_psicologo), 1) FROM psicologo)
+       );
+
+-- Paciente
+SELECT setval(
+               pg_get_serial_sequence('public.paciente', 'id_paciente'),
+               (SELECT COALESCE(MAX(id_paciente), 1) FROM paciente)
+       );
+
+-- Usuario
+SELECT setval(
+               pg_get_serial_sequence('public.usuario', 'id_usuario'),
+               (SELECT COALESCE(MAX(id_usuario), 1) FROM usuario)
+       );
+
+-- Calificación
+SELECT setval(
+               pg_get_serial_sequence('public.calificacion', 'id_calificacion'),
+               (SELECT COALESCE(MAX(id_calificacion), 1) FROM calificacion)
+       );
+
+-- Mensaje
+SELECT setval(
+               pg_get_serial_sequence('public.mensaje', 'id_mensaje'),
+               (SELECT COALESCE(MAX(id_mensaje), 1) FROM mensaje)
+       );
+
+-- Conversación
+SELECT setval(
+               pg_get_serial_sequence('public.conversaciones', 'id_conversacion'),
+               (SELECT COALESCE(MAX(id_conversacion), 1) FROM conversaciones)
+       );
+
+-- Cita
+SELECT setval(
+               pg_get_serial_sequence('public.cita', 'id_cita'),
+               (SELECT COALESCE(MAX(id_cita), 1) FROM cita)
+       );
+
+-- Certificado
+SELECT setval(
+               pg_get_serial_sequence('public.certificado', 'id_certificate_file'),
+               (SELECT COALESCE(MAX(id_certificate_file), 1) FROM certificado)
+       );
+
+-- Dirección
+SELECT setval(
+               pg_get_serial_sequence('public.direccion', 'id_direccion'),
+               (SELECT COALESCE(MAX(id_direccion), 1) FROM direccion)
+       );

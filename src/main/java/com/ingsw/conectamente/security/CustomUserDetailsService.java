@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con email: " + email));
 
-        GrantedAuthority authority = new SimpleGrantedAuthority("ROL_" + usuario.getRol().getName().name() );
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().getName().name() );
 
         return new UserPrincipal(
                 usuario.getIdUsuario(),
