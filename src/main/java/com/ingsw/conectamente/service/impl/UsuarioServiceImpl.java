@@ -130,6 +130,8 @@ public class UsuarioServiceImpl implements UsuarioService {
             Psicologo psicologo = new Psicologo();
             psicologo.setNombre(registroDTO.getNombre());
             psicologo.setApellido(registroDTO.getApellido());
+            psicologo.setDni(registroDTO.getDni());
+            psicologo.setEdad(registroDTO.getEdad());
             psicologo.setNumColegiatura(registroDTO.getNumColegiatura());
             psicologo.setCreatedAt(LocalDateTime.now());
             psicologo.setUsuario(usuario);
