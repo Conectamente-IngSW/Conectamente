@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/certificado")
-@PreAuthorize("hasRole('PSICOLOGO')")
+@PreAuthorize("hasRole('PSICOLOGO','ADMINISTRADOR')")
 public class CertificadoController {
     private final CertificadoService certificadoService;
     private final CertificadoRepository certificadoRepository;

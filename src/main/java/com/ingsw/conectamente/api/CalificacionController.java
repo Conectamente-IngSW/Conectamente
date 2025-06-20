@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/calificaciones")
-@PreAuthorize("hasAnyRole('ADMINISTRADOR', 'PACIENTE')") // Restriction at class level
+@PreAuthorize("hasAnyRole('ADMINISTRADOR', 'PACIENTE','PSICOLOGO')") // Restriction at class level
 public class CalificacionController {
     private final CalificacionService calificacionService;
 
