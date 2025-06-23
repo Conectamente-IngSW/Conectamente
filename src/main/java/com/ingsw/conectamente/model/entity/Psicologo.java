@@ -31,16 +31,16 @@ public class Psicologo {
     @Column(name = "numero_colegiatura", nullable = false, unique = true)
     private String numColegiatura;
 
-    @Column(name = "disponibilidad", nullable = false)
+    @Column(name = "disponibilidad")
     private String disponibilidad;
 
     @Column(name = "descripcion_psicologo", columnDefinition = "TEXT")
     private String descripcionPsicologo;
 
-    @Column(name = "tarifa", nullable = false)
+    @Column(name = "tarifa")
     private Float tarifa;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")

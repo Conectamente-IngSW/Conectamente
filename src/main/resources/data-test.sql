@@ -1,3 +1,5 @@
+TRUNCATE TABLE rol RESTART IDENTITY CASCADE;
+
 -- Tabla: rol
 INSERT INTO rol (id_rol, name)
 VALUES (1, 'PACIENTE'),
