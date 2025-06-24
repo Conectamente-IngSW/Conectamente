@@ -47,7 +47,6 @@ class ConversacionServiceUnitTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        // 1) Creamos los mocks de Paciente y Psicólogo y stub de findById
         pacienteMock = new Paciente();
         pacienteMock.setIdPaciente(1);
         when(pacienteRepository.findById(anyInt()))
@@ -58,7 +57,7 @@ class ConversacionServiceUnitTest {
         when(psicologoRepository.findById(anyInt()))
                 .thenReturn(Optional.of(psicologoMock));
 
-        // 2) Preparamos la Conversacion que devolverá el save()
+
         conversacionMock = new Conversacion();
         conversacionMock.setIdConversacion(42);
         conversacionMock.setPaciente(pacienteMock);
@@ -85,7 +84,7 @@ class ConversacionServiceUnitTest {
 //    }
 
     @Test
-    @DisplayName("CP02 - Buscar conversaciones por paciente existente")
+    @DisplayName("Buscar conversaciones por paciente existente")
     void findConversacionByPacienteId_retornaLista() {
         Integer idPac = 1;
         when(conversacionRepository.findByPaciente_IdPaciente(idPac))
@@ -99,7 +98,7 @@ class ConversacionServiceUnitTest {
     }
 
     @Test
-    @DisplayName("CP03 - Buscar conversaciones por psicólogo existente")
+    @DisplayName("Buscar conversaciones por psicólogo existente")
     void findConversacionByPsicologoId_retornaLista() {
         Integer idPsi = 2;
         when(conversacionRepository.findByPsicologo_IdPsicologo(idPsi))
@@ -113,7 +112,7 @@ class ConversacionServiceUnitTest {
     }
 
     @Test
-    @DisplayName("CP04 - Buscar conversación por ID existente")
+    @DisplayName("Buscar conversación por ID existente")
     void findConversacionById_existente_retornaEntidad() {
         Integer id = 42;
         when(conversacionRepository.findById(id))
@@ -127,7 +126,7 @@ class ConversacionServiceUnitTest {
     }
 
     @Test
-    @DisplayName("CP05 - Buscar conversación por ID inexistente lanza excepción")
+    @DisplayName("Buscar conversación por ID inexistente lanza excepción")
     void findConversacionById_inexistente_lanzaExcepcion() {
         Integer id = 99;
         when(conversacionRepository.findById(id))
