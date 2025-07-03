@@ -146,10 +146,10 @@ SELECT setval(
        );
 
 -- Certificado
-SELECT setval(
-               pg_get_serial_sequence('public.certificado', 'id_certificate_file'),
-               (SELECT COALESCE(MAX(id_certificate_file), 1) FROM certificado)
-       );
+--SELECT setval(
+--              pg_get_serial_sequence('public.certificado', 'id_certificate_file'),
+--               (SELECT COALESCE(MAX(id_certificate_file), 1) FROM certificado)
+--       );
 
 -- Dirección
 SELECT setval(

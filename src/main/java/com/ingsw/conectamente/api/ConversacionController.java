@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/conversaciones")
 @RequiredArgsConstructor
 @Validated
-
 @PreAuthorize("hasAnyRole('ADMINISTRADOR', 'PSICOLOGO', 'PACIENTE')")
 
 public class ConversacionController {
