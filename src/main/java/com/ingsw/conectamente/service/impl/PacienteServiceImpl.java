@@ -41,7 +41,6 @@ public class PacienteServiceImpl implements PacienteService {
             throw new BadRequestException("Ya existe un paciente registrado con el mismo dni");
         }
 
-
         Paciente paciente = pacienteMapper.toEntity(pacienteDTO);
         paciente.setCreatedAt(LocalDateTime.now());
         paciente = pacienteRepository.save(paciente);

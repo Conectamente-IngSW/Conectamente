@@ -1,6 +1,8 @@
 package com.ingsw.conectamente.model.entity;
 
+import com.ingsw.conectamente.enums.Departamento;
 import com.ingsw.conectamente.enums.Especialidad;
+import com.ingsw.conectamente.enums.Modalidad;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
@@ -46,16 +48,22 @@ public class Psicologo {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Column(name = "direccion", columnDefinition = "TEXT")
+    private String direccion;
 
+    @Enumerated(EnumType.STRING)
+    private Departamento departamento;
 
     @Enumerated(EnumType.STRING)
     private Especialidad especialidad;
+
+    @Enumerated(EnumType.STRING)
+    private Modalidad modalidad;
 
     @ManyToOne
     @JoinColumn(name = "idDireccion", referencedColumnName = "idDireccion",
             foreignKey = @ForeignKey(name = "Direccion_idDireccion" ))
     private Direccion Direccion_idDireccion;
-
 
     @OneToOne
     @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario")

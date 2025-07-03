@@ -2,6 +2,7 @@ package com.ingsw.conectamente.api;
 
 import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.dto.VisualizarPsicologoDTO;
+import com.ingsw.conectamente.enums.Departamento;
 import com.ingsw.conectamente.enums.Especialidad;
 import com.ingsw.conectamente.model.entity.Psicologo;
 import com.ingsw.conectamente.service.PsicologoService;
@@ -59,11 +60,11 @@ public class PsicologoController {
     @GetMapping("/buscar")
     public List<Psicologo> buscarPsicologos(
             @RequestParam(required = false) Especialidad especialidad,
-            @RequestParam(required = false) String disponibilidad,
+            @RequestParam(required = false) Departamento departamento,
             @RequestParam(required = false) Float minTarifa,
             @RequestParam(required = false) Float maxTarifa
     ) {
-        return psicologoService.buscarPorFiltros(especialidad, disponibilidad, minTarifa, maxTarifa);
+        return psicologoService.buscarPorFiltros(especialidad, departamento, minTarifa, maxTarifa);
     }
 
     @GetMapping("/{id}")
