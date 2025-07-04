@@ -46,23 +46,27 @@ INSERT INTO psicologo (
     id_psicologo, edad, id_direccion, tarifa, usuario_id_usuario,
     created_at,             updated_at,             apellido,
     descripcion_psicologo,  disponibilidad,         dni,
-    especialidad,           nombre,                 numero_colegiatura
+    especialidad,           nombre,                 numero_colegiatura, direccion, departamento,
+    modalidad
 )
 VALUES
     (1, 35, 1, 150.0, 3,
      '2025-06-12 08:05:00', '2025-06-13 09:35:00', 'Ramírez',
      'Especialista en ansiedad', 'LUNES-VIERNES', '99887766',
-     'CLINICA',               'Carlos',               'CP123'),
+     'CLINICA',               'Carlos',               'CP123',
+     'Av. Larco 123', 'LIMA', 'PRESENCIAL' ),
 
     (4, 33, 3, 120.0, 6,
      '2025-06-14 10:20:00', '2025-06-14 10:20:00', 'Gómez',
      'Psicólogo prueba 2',      'MARTES-JUEVES',        '55667777',
-     'SOCIAL',                'Daniel',               'CP004'),
+     'SOCIAL',                'Daniel',               'CP004',
+     'Calle Los Cedros 456', 'LIMA', 'PRESENCIAL'),
 
     (5, 37, 1, 140.0, 7,
      '2025-06-14 11:05:00', '2025-06-14 11:05:00', 'Díaz',
      'Psicólogo prueba 3',      'MIÉRCOLES-VIERNES',    '66778899',
-     'DEPORTIVA',             'Elena',                'CP005');
+     'DEPORTIVA',             'Elena',                'CP005',
+     'Jr. Ayacucho 789', 'LIMA', 'PRESENCIAL');
 
 -- Tabla: cita
 INSERT INTO cita (

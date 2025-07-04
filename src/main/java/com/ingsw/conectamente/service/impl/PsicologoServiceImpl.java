@@ -3,6 +3,7 @@ package com.ingsw.conectamente.service.impl;
 
 import com.ingsw.conectamente.dto.PsicologoDTO;
 import com.ingsw.conectamente.dto.VisualizarPsicologoDTO;
+import com.ingsw.conectamente.enums.Departamento;
 import com.ingsw.conectamente.enums.Especialidad;
 import com.ingsw.conectamente.exception.BadRequestException;
 import com.ingsw.conectamente.exception.ResourceNotFoundException;
@@ -93,7 +94,10 @@ public class PsicologoServiceImpl implements PsicologoService {
         psicologoFromDb.setTarifa(updatePsicologoDTO.getTarifa());
         psicologoFromDb.setEspecialidad(updatePsicologoDTO.getEspecialidad());
         psicologoFromDb.setNumColegiatura(updatePsicologoDTO.getNumColegiatura());
-        psicologoFromDb.setUpdatedAt(LocalDateTime.now());
+        //psicologoFromDb.setUpdatedAt(LocalDateTime.now());
+        psicologoFromDb.setModalidad(updatePsicologoDTO.getModalidad());
+        psicologoFromDb.setDireccion(updatePsicologoDTO.getDireccion());
+        psicologoFromDb.setDepartamento(updatePsicologoDTO.getDepartamento());
 
         // Guardar cambios
         psicologoFromDb = psicologoRepository.save(psicologoFromDb);
@@ -108,13 +112,16 @@ public class PsicologoServiceImpl implements PsicologoService {
         psicologoRepository.delete(psicologo);
     }
 
-    public List<Psicologo> buscarPorFiltros(Especialidad especialidad, String disponibilidad, Float minTarifa, Float maxTarifa) {
+    public List<Psicologo> buscarPorFiltros(Especialidad especialidad, Departamento departamento, Float minTarifa, Float maxTarifa) {
         // Ejemplo simple: puedes combinar los filtros según la lógica que desees
         if (especialidad != null) {
             return psicologoRepository.findByEspecialidad(especialidad);
         }
-        if (disponibilidad != null) {
-            return psicologoRepository.findByDisponibilidadContaining(disponibilidad);
+        //if (disponibilidad != null) { //cambiar a ubicacion departamento
+        //    return psicologoRepository.findByDisponibilidadContaining(disponibilidad);
+        //}
+        if (departamento != null){
+            return psicologoRepository.findByDepartamento(departamento);
         }
         if (minTarifa != null && maxTarifa != null) {
             return psicologoRepository.findByTarifaBetween(minTarifa, maxTarifa);

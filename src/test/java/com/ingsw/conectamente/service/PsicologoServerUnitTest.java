@@ -1,6 +1,7 @@
 package com.ingsw.conectamente.service;
 
 import com.ingsw.conectamente.dto.PsicologoDTO;
+import com.ingsw.conectamente.enums.Departamento;
 import com.ingsw.conectamente.enums.Especialidad;
 
 import com.ingsw.conectamente.exception.BadRequestException;
@@ -366,21 +367,21 @@ public class PsicologoServerUnitTest {
     @Test
     @DisplayName("CP12 - Filtrar psicólogo por disponibilidad")
     void testBuscarPorDisponibilidad() {
-        String disponibilidad = "mañana";
+        Departamento departamento = Departamento.LIMA;
         Psicologo p1 = new Psicologo();
-        p1.setDisponibilidad(disponibilidad);
+        p1.setDepartamento(departamento);
 
-        when(psicologoRepository.findByDisponibilidadContaining(disponibilidad)).thenReturn(List.of(p1));
+        when(psicologoRepository.findByDepartamento(departamento)).thenReturn(List.of(p1));
 
         List<Psicologo> result = psicologoService.buscarPorFiltros(
                 null,
-                disponibilidad,
+                departamento,
                 null,
                 null);
 
         assertEquals(1, result.size());
-        assertEquals(disponibilidad, result.get(0).getDisponibilidad());
-        verify(psicologoRepository, times(1)).findByDisponibilidadContaining(disponibilidad);
+        assertEquals(departamento, result.get(0).getDepartamento());
+        verify(psicologoRepository, times(1)).findByDepartamento(departamento);
     }
 
     @Test
@@ -444,39 +445,39 @@ public class PsicologoServerUnitTest {
     }
 
     @Test
-    @DisplayName("CP16 - Filtrar por especialidad y disponibilidad")
-    void testFiltrarPorEspecialidadYDisponibilidad() {
+    @DisplayName("CP16 - Filtrar por especialidad y departamento")
+    void testFiltrarPorEspecialidadYDepartamento() {
         Especialidad especialidad = Especialidad.CLINICA;
-        String disponibilidad = "mañana";
+        Departamento departamento = Departamento.LIMA;
 
         Psicologo p = new Psicologo();
         p.setEspecialidad(especialidad);
-        p.setDisponibilidad(disponibilidad);
+        p.setDepartamento(departamento);
 
         when(psicologoRepository.findByEspecialidad(especialidad)).thenReturn(List.of(p));
-        when(psicologoRepository.findByDisponibilidadContaining(disponibilidad)).thenReturn(List.of(p));
+        when(psicologoRepository.findByDepartamento(departamento)).thenReturn(List.of(p));
 
         List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad,
-                disponibilidad,
+                departamento,
                 null,
                 null);
 
         assertEquals(1, result.size());
         assertEquals(especialidad, result.get(0).getEspecialidad());
-        assertEquals(disponibilidad, result.get(0).getDisponibilidad());
+        assertEquals(departamento, result.get(0).getDepartamento());
     }
 
     @Test
     @DisplayName("CP17 - Filtrar sin coincidencias retorna lista vacía")
     void testFiltrarSinCoincidencias() {
         Especialidad especialidad = Especialidad.ORGANIZACIONAL;
-        String disponibilidad = "noche";
+        Departamento departamento = Departamento.LIMA;
 
         when(psicologoRepository.findByEspecialidad(especialidad)).thenReturn(Collections.emptyList());
-        when(psicologoRepository.findByDisponibilidadContaining(disponibilidad)).thenReturn(Collections.emptyList());
+        when(psicologoRepository.findByDepartamento(departamento)).thenReturn(Collections.emptyList());
 
         List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad,
-                disponibilidad,
+                departamento,
                 null,
                 null);
 

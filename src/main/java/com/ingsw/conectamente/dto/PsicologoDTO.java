@@ -1,6 +1,9 @@
 package com.ingsw.conectamente.dto;
 
+import com.ingsw.conectamente.enums.Departamento;
 import com.ingsw.conectamente.enums.Especialidad;
+import com.ingsw.conectamente.enums.Modalidad;
+import com.ingsw.conectamente.model.entity.Direccion;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -37,5 +40,14 @@ public class PsicologoDTO {
 
     @NotNull(message = "La especialidad es requerida")
     private Especialidad especialidad;
+
+    @NotNull(message = "La modalidad es requerida")
+    private Modalidad modalidad;
+
+    @NotNull(message = "La dirección es requerida")
+    private String direccion;
+
+    @NotNull(message = "El departamento es requerido")
+    private Departamento departamento;
 
 }
