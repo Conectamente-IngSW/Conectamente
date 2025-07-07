@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -112,21 +113,20 @@ public class PsicologoServiceImpl implements PsicologoService {
         psicologoRepository.delete(psicologo);
     }
 
-    public List<Psicologo> buscarPorFiltros(Especialidad especialidad, Departamento departamento, Float minTarifa, Float maxTarifa) {
-        // Ejemplo simple: puedes combinar los filtros según la lógica que desees
-        if (especialidad != null) {
-            return psicologoRepository.findByEspecialidad(especialidad);
-        }
-        //if (disponibilidad != null) { //cambiar a ubicacion departamento
-        //    return psicologoRepository.findByDisponibilidadContaining(disponibilidad);
-        //}
-        if (departamento != null){
-            return psicologoRepository.findByDepartamento(departamento);
-        }
-        if (minTarifa != null && maxTarifa != null) {
-            return psicologoRepository.findByTarifaBetween(minTarifa, maxTarifa);
-        }
-        return psicologoRepository.findAll();
+    public List<VisualizarPsicologoDTO> buscarPorFiltros(Especialidad especialidad, Departamento departamento, Float minTarifa, Float maxTarifa, String nombre) {
+        List<Psicologo> psicologos = psicologoRepository.findAll();
+
+        return psicologos.stream()
+                .filter(p -> especialidad == null || p.getEspecialidad() == especialidad)
+                .filter(p -> departamento == null || p.getDepartamento() == departamento)
+                .filter(p -> (minTarifa == null || p.getTarifa() >= minTarifa) &&
+                        (maxTarifa == null || p.getTarifa() <= maxTarifa))
+                .filter(p -> nombre == null || nombre.trim().isEmpty() ||
+                        p.getNombre().toLowerCase().contains(nombre.toLowerCase()) ||
+                        p.getApellido().toLowerCase().contains(nombre.toLowerCase()))
+                .map(visualizacionPsicologoMapper::toDto)
+                .collect(Collectors.toList());
+
     }
 
     @Override

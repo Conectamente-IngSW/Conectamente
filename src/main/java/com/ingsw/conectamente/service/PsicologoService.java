@@ -18,6 +18,6 @@ public interface PsicologoService {
     Page<PsicologoDTO> paginate(Pageable pageable);
     VisualizarPsicologoDTO findById(Integer id);
     PsicologoDTO update(Integer id, PsicologoDTO updatePsicologoDTO);
-    List<Psicologo> buscarPorFiltros(Especialidad especialidad, Departamento departamento, Float minTarifa, Float maxTarifa);
+    List<VisualizarPsicologoDTO> buscarPorFiltros(Especialidad especialidad, Departamento departamento, Float minTarifa, Float maxTarifa, String nombre);
     void delete(Integer id);
 }

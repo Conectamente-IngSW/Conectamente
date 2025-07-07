@@ -58,13 +58,14 @@ public class PsicologoController {
     }
 
     @GetMapping("/buscar")
-    public List<Psicologo> buscarPsicologos(
+    public List<VisualizarPsicologoDTO> buscarPsicologos(
             @RequestParam(required = false) Especialidad especialidad,
             @RequestParam(required = false) Departamento departamento,
             @RequestParam(required = false) Float minTarifa,
-            @RequestParam(required = false) Float maxTarifa
+            @RequestParam(required = false) Float maxTarifa,
+            @RequestParam(required = false) String nombre
     ) {
-        return psicologoService.buscarPorFiltros(especialidad, departamento, minTarifa, maxTarifa);
+        return psicologoService.buscarPorFiltros(especialidad, departamento, minTarifa, maxTarifa, nombre);
     }
 
     @GetMapping("/{id}")

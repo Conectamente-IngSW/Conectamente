@@ -1,6 +1,7 @@
 package com.ingsw.conectamente.service;
 
 import com.ingsw.conectamente.dto.PsicologoDTO;
+import com.ingsw.conectamente.dto.VisualizarPsicologoDTO;
 import com.ingsw.conectamente.enums.Departamento;
 import com.ingsw.conectamente.enums.Especialidad;
 
@@ -354,7 +355,8 @@ public class PsicologoServerUnitTest {
 
         when(psicologoRepository.findByEspecialidad(especialidad)).thenReturn(List.of(p1));
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad,
+        List<VisualizarPsicologoDTO> result = psicologoService.buscarPorFiltros(especialidad,
+                null,
                 null,
                 null,
                 null);
@@ -373,9 +375,10 @@ public class PsicologoServerUnitTest {
 
         when(psicologoRepository.findByDepartamento(departamento)).thenReturn(List.of(p1));
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(
+        List<VisualizarPsicologoDTO> result = psicologoService.buscarPorFiltros(
                 null,
                 departamento,
+                null,
                 null,
                 null);
 
@@ -400,11 +403,11 @@ public class PsicologoServerUnitTest {
         when(psicologoRepository.findByTarifaBetween(min, max)).thenReturn(List.of(p1, p2));
 
         // Act
-        List<Psicologo> result = psicologoService.buscarPorFiltros(null, null, min, max);
+        List<VisualizarPsicologoDTO> result = psicologoService.buscarPorFiltros(null, null, min, max, null);
 
         // Assert
         assertEquals(2, result.size());
-        for (Psicologo psicologo : result) {
+        for (VisualizarPsicologoDTO psicologo : result) {
             assertTrue(psicologo.getTarifa() >= min && psicologo.getTarifa() <= max);
         }
         verify(psicologoRepository, times(1)).findByTarifaBetween(min, max);
@@ -418,7 +421,8 @@ public class PsicologoServerUnitTest {
 
         when(psicologoRepository.findAll()).thenReturn(List.of(p1, p2));
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(null,
+        List<VisualizarPsicologoDTO> result = psicologoService.buscarPorFiltros(null,
+                null,
                 null,
                 null,
                 null);
@@ -434,10 +438,11 @@ public class PsicologoServerUnitTest {
 
         when(psicologoRepository.findByEspecialidad(Especialidad.CLINICA)).thenReturn(vacio);
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(Especialidad.CLINICA,
+        List<VisualizarPsicologoDTO> result = psicologoService.buscarPorFiltros(Especialidad.CLINICA,
                 null,
                 10f,
-                50f);
+                50f,
+                null);
 
         // Solo se aplicará especialidad (según tu implementación actual), y no tarifa.
         assertTrue(result.isEmpty());
@@ -457,8 +462,9 @@ public class PsicologoServerUnitTest {
         when(psicologoRepository.findByEspecialidad(especialidad)).thenReturn(List.of(p));
         when(psicologoRepository.findByDepartamento(departamento)).thenReturn(List.of(p));
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad,
+        List<VisualizarPsicologoDTO> result = psicologoService.buscarPorFiltros(especialidad,
                 departamento,
+                null,
                 null,
                 null);
 
@@ -476,8 +482,9 @@ public class PsicologoServerUnitTest {
         when(psicologoRepository.findByEspecialidad(especialidad)).thenReturn(Collections.emptyList());
         when(psicologoRepository.findByDepartamento(departamento)).thenReturn(Collections.emptyList());
 
-        List<Psicologo> result = psicologoService.buscarPorFiltros(especialidad,
+        List<VisualizarPsicologoDTO> result = psicologoService.buscarPorFiltros(especialidad,
                 departamento,
+                null,
                 null,
                 null);
 
@@ -494,7 +501,7 @@ public class PsicologoServerUnitTest {
         when(psicologoRepository.findByTarifaBetween(min, max)).thenReturn(Collections.emptyList());
 
         // Act
-        List<Psicologo> result = psicologoService.buscarPorFiltros(null, null, min, max);
+        List<VisualizarPsicologoDTO> result = psicologoService.buscarPorFiltros(null, null, min, max, null);
 
         // Assert
         assertTrue(result.isEmpty());

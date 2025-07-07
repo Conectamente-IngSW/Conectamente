@@ -11,6 +11,9 @@ import lombok.Data;
 
 @Data
 public class VisualizarPsicologoDTO {
+    @NotNull
+    private Integer id;
+
     @NotBlank(message = "El nombre es requerido")
     private String nombre;
 
