@@ -24,6 +24,5 @@ public class UsuarioRegistroDTO {
     private Integer edad;
     private String dni;
     private String numColegiatura;
-    private String descripcion;
 
 }

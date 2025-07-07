@@ -41,7 +41,7 @@ public class PsicologoDTO {
     @NotNull(message = "La especialidad es requerida")
     private Especialidad especialidad;
 
-    @NotNull(message = "La especialidad es requerida")
+    @NotNull(message = "La modalidad es requerida")
     private Modalidad modalidad;
 
     @NotNull(message = "La dirección es requerida")
