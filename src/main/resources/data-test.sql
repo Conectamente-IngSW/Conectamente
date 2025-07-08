@@ -14,7 +14,10 @@ VALUES (1, 3, 'admin@conectamente.com', '$2a$10$D2JXfg1AC.XbPqXhXn0QtO8mDTLnDVu2
        (4, 1, 'paciente2@conectamente.com', '$2a$10$YZnV1HKC8tIB7ycMhIaqme3J8JcMk/chluYY/PL1Zhnjld5R.P4/i'),
        (5, 1, 'paciente3@conectamente.com', '$2a$10$KGKYp7gPuGr4VMRBSSYTGukJa1LmQJPLSS.43vLrhmt6VwDi183hW'),
        (6, 2, 'psicologo2@conectamente.com', '$2a$10$4d2dFWlEZMw7fjHM/QI.L.ZWJKSRJiAOf9gbTyj0JVM31AcBf8iwm'),
-       (7, 2, 'psicologo3@conectamente.com', '$2a$10$/dnrtHleunSieJ9jd.E6XefYlvBCG.ccbYJgY0p8lCQ8lvXAhvbsC');
+       (7, 2, 'psicologo3@conectamente.com', '$2a$10$/dnrtHleunSieJ9jd.E6XefYlvBCG.ccbYJgY0p8lCQ8lvXAhvbsC'),
+       (8, 2, 'psicologo4@conectamente.com', '$2a$10$/dnrtHleunSieJ9jd.E6XefYlvBCG.ccbYJgY0p8lCQ8lvXAhvbsC'),
+       (9, 2, 'psicologo5@conectamente.com', '$2a$10$/dnrtHleunSieJ9jd.E6XefYlvBCG.ccbYJgY0p8lCQ8lvXAhvbsC'),
+       (10, 2, 'psicologo6@conectamente.com', '$2a$10$/dnrtHleunSieJ9jd.E6XefYlvBCG.ccbYJgY0p8lCQ8lvXAhvbsC');
 
 -- Tabla: direccion
 INSERT INTO direccion (id_direccion, departamento, distrito, nombre_direccion)
@@ -52,21 +55,43 @@ INSERT INTO psicologo (
 VALUES
     (1, 35, 1, 150.0, 3,
      '2025-06-12 08:05:00', '2025-06-13 09:35:00', 'Ramírez',
-     'Especialista en ansiedad', 'LUNES-VIERNES', '99887766',
+     'Psicólogo clínico con amplia experiencia en el tratamiento de trastornos de ansiedad, ataques de pánico, fobias y estrés generalizado. Brinda acompañamiento terapéutico centrado en la persona, combinando técnicas de terapia cognitivo-conductual (TCC), mindfulness y psicoeducación emocional. Ha trabajado con jóvenes y adultos, ayudándoles a identificar y transformar patrones de pensamiento disfuncionales, fortaleciendo su resiliencia y bienestar emocional. Su enfoque busca crear un espacio seguro y empático para promover el autoconocimiento y el manejo efectivo de la ansiedad en la vida cotidiana.'
+        , 'LUNES-VIERNES', '99887766',
      'CLINICA',               'Carlos',               'CP123',
      'Av. Larco 123', 'LIMA', 'PRESENCIAL' ),
 
     (4, 33, 3, 120.0, 6,
      '2025-06-14 10:20:00', '2025-06-14 10:20:00', 'Gómez',
-     'Psicólogo prueba 2',      'MARTES-JUEVES',        '55667777',
+     'Psicólogo social especializado en dinámicas grupales, intervención comunitaria y promoción del bienestar colectivo. Ha liderado proyectos de desarrollo social en contextos urbanos y rurales, trabajando con poblaciones vulnerables en temas como violencia de género, inclusión social y cohesión comunitaria. Su enfoque combina herramientas de psicología comunitaria, metodologías participativas y análisis de redes sociales. Promueve procesos de empoderamiento, escucha activa y participación ciudadana para generar cambios sostenibles en las comunidades.'
+        ,      'MARTES-JUEVES',        '55667777',
      'SOCIAL',                'Daniel',               'CP004',
      'Calle Los Cedros 456', 'LIMA', 'PRESENCIAL'),
 
     (5, 37, 1, 140.0, 7,
      '2025-06-14 11:05:00', '2025-06-14 11:05:00', 'Díaz',
-     'Psicólogo prueba 3',      'MIÉRCOLES-VIERNES',    '66778899',
+     'Psicóloga deportiva enfocada en el fortalecimiento del rendimiento mental de atletas y equipos deportivos. Cuenta con experiencia en la preparación psicológica para competencias, manejo de la presión, establecimiento de metas y recuperación emocional tras lesiones. Ha trabajado con deportistas de alto rendimiento y amateurs, ayudándoles a mantener la concentración, la motivación y la autoconfianza. Utiliza herramientas de visualización, entrenamiento mental y regulación emocional para potenciar el desempeño deportivo y fomentar el equilibrio entre cuerpo y mente.'
+        ,      'MIÉRCOLES-VIERNES',    '66778899',
      'DEPORTIVA',             'Elena',                'CP005',
-     'Jr. Ayacucho 789', 'LIMA', 'PRESENCIAL');
+     'Jr. Ayacucho 789', 'LIMA', 'PRESENCIAL'),
+
+    (6, 37, 1, 140.0, 8,
+     '2025-06-14 11:05:00', '2025-06-14 11:05:00', 'Mesa',
+     'Psicólogo forense con experiencia en evaluación y elaboración de peritajes psicológicos en contextos judiciales. Ha trabajado en colaboración con el Poder Judicial y el Ministerio Público, realizando diagnósticos clínicos y análisis de conducta en casos de violencia familiar, abuso infantil, imputabilidad y riesgo psicosocial. Cuenta con formación en técnicas proyectivas, entrevistas estructuradas y elaboración de informes periciales con validez legal. Su enfoque es riguroso, ético y centrado en la objetividad científica al servicio de la justicia.',      'MIÉRCOLES-VIERNES',    '66778897',
+     'FORENSE',             'Marco Antonio',                'CP008',
+     'Jr. Ayacucho 789', 'LIMA', 'PRESENCIAL'),
+    (7, 40, 1, 130.0, 9,
+     '2025-06-15 10:00:00', '2025-06-15 10:00:00', 'Vargas',
+     'Psicóloga educativa especializada en procesos de aprendizaje, orientación vocacional y adaptación escolar. Ha trabajado en instituciones educativas públicas y privadas, brindando acompañamiento a estudiantes con dificultades académicas, problemas de conducta y necesidades educativas especiales. Aplica evaluaciones psicopedagógicas, realiza intervenciones individuales y grupales, y colabora con docentes y padres para promover entornos escolares inclusivos y saludables. Su enfoque combina estrategias pedagógicas con herramientas psicológicas para potenciar el desarrollo integral del estudiante.',
+     'LUNES-MIÉRCOLES-VIERNES', '88990011',
+     'EDUCATIVA', 'Lucía Fernanda', 'CP009',
+     'Av. Bolívar 120', 'CUSCO', 'PRESENCIAL'),
+    (8, 42, 1, 160.0, 10,
+     '2025-06-16 09:30:00', '2025-06-16 09:30:00', 'Castillo',
+     'Psicólogo organizacional con trayectoria en selección de talento, desarrollo de liderazgo y mejora del clima laboral. Ha asesorado a empresas en procesos de transformación cultural, implementación de evaluaciones de desempeño y diseño de programas de bienestar corporativo. Utiliza metodologías como assessment center, coaching ejecutivo y análisis de competencias. Su enfoque promueve organizaciones saludables, centradas en las personas y orientadas a resultados sostenibles.',
+     'MARTES-JUEVES', '77665544',
+     'ORGANIZACIONAL', 'Javier Esteban', 'CP010',
+     'Calle Comercio 345', 'AREQUIPA', 'PRESENCIAL');
+
 
 -- Tabla: cita
 INSERT INTO cita (

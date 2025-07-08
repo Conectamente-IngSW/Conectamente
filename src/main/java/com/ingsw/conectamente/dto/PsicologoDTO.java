@@ -32,7 +32,7 @@ public class PsicologoDTO {
     @NotBlank(message = "La disponibilidad es requerida")
     private String disponibilidad;
 
-    @Size(max = 500, message = "La descripcion no puede exceder los 500 caracteres")
+    @Size(max = 1000, message = "La descripcion no puede exceder los 500 caracteres")
     private String descripcion;
 
     @NotNull(message = "La tarifa es requerida")
