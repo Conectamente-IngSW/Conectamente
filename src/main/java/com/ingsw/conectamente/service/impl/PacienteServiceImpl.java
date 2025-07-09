@@ -85,4 +85,13 @@ public class PacienteServiceImpl implements PacienteService {
                 .orElseThrow(() -> new RuntimeException("El paciente con ID " + id + " no fue encontrado"));
         pacienteRepository.delete(paciente);
     }
+
+    //buscar por paciente por id de usuario
+    @Override
+    public VisualizarPacienteDTO findByUsuarioId(Integer idUsuario) {
+        Paciente paciente = pacienteRepository.findPacienteByUsuario_IdUsuario(idUsuario)
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontró un paciente con id de usuario: " + idUsuario));
+
+        return visualizarPacienteMapper.toDto(paciente);
+    }
 }

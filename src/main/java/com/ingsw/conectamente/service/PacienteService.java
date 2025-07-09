@@ -10,4 +10,6 @@ public interface PacienteService {
     VisualizarPacienteDTO findById(Integer id);
     PacienteDTO update(Integer id, PacienteDTO updatePacienteDTO);
     void delete(Integer id);
+    //buscar por paciente por id de usuario
+    VisualizarPacienteDTO findByUsuarioId(Integer id);
 }

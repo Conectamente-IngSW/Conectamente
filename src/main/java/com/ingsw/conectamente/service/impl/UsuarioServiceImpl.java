@@ -68,14 +68,17 @@ public class UsuarioServiceImpl implements UsuarioService {
         dto.setToken(token);
 
         if (usuario.getPaciente() != null) {
+            dto.setIdUsuario(usuario.getIdUsuario()); //new
             dto.setNombre(usuario.getPaciente().getNombre());
             dto.setApellido(usuario.getPaciente().getApellido());
             dto.setRol("PACIENTE");
         } else if (usuario.getPsicologo() != null) {
+            dto.setIdUsuario(usuario.getIdUsuario()); //new
             dto.setNombre(usuario.getPsicologo().getNombre());
             dto.setApellido(usuario.getPsicologo().getApellido());
             dto.setRol("PSICOLOGO");
         } else {
+            dto.setIdUsuario(usuario.getIdUsuario()); //new
             dto.setRol(usuario.getRol().getName().name()); // fallback
         }
 

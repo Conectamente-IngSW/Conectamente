@@ -2,6 +2,7 @@ package com.ingsw.conectamente.api;
 
 import com.ingsw.conectamente.dto.PacienteDTO;
 import com.ingsw.conectamente.dto.VisualizarPacienteDTO;
+import com.ingsw.conectamente.model.entity.Usuario;
 import com.ingsw.conectamente.service.PacienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,8 @@ public class PacienteController {
     }
 
 
+
+
     @PostMapping
     public ResponseEntity<PacienteDTO> create(@Valid @RequestBody PacienteDTO pacienteDTO) {
         PacienteDTO createdPsicologo = pacienteService.create(pacienteDTO);
@@ -48,5 +51,12 @@ public class PacienteController {
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         pacienteService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    //Buscar Paciende por id de usuario
+    @GetMapping("/usuario/{idUsuario}")
+    public ResponseEntity<VisualizarPacienteDTO> getPacientePorUsuario(@PathVariable Integer idUsuario) {
+        VisualizarPacienteDTO paciente = pacienteService.findByUsuarioId(idUsuario);
+        return ResponseEntity.ok(paciente);
     }
 }

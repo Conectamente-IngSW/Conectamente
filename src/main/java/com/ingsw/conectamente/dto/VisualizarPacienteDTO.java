@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class VisualizarPacienteDTO {
+    private Integer idPaciente;
+
     @NotBlank(message = "El nombre es requerido")
     private String nombre;
 
