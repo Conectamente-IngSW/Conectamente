@@ -22,14 +22,14 @@ public class PsicologoDTO {
     @NotBlank(message = "El dni es requerido")
     private String dni;
 
-    @NotNull(message = "La edad es requerida")
+    //@NotNull(message = "La edad es requerida")
     private Integer edad;
 
     @NotBlank(message = "El numero de colegiatura es requerido")
     @Size(max = 10, message = "El numero de colegiatura debe tener 10 caracteres")
     private String numColegiatura;
 
-    @NotBlank(message = "La disponibilidad es requerida")
+    //@NotBlank(message = "La disponibilidad es requerida")
     private String disponibilidad;
 
     @Size(max = 1000, message = "La descripcion no puede exceder los 500 caracteres")
@@ -38,10 +38,10 @@ public class PsicologoDTO {
     @NotNull(message = "La tarifa es requerida")
     private Float tarifa;
 
-    @NotNull(message = "La especialidad es requerida")
+    //@NotNull(message = "La especialidad es requerida")
     private Especialidad especialidad;
 
-    @NotNull(message = "La modalidad es requerida")
+    //@NotNull(message = "La modalidad es requerida")
     private Modalidad modalidad;
 
     @NotNull(message = "La dirección es requerida")
