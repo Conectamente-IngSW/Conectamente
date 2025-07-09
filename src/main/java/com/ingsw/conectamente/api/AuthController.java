@@ -27,7 +27,6 @@ public class AuthController {
         UsuarioPerfilDTO usuarioPerfil = usuarioService.registroPaciente(usuarioRegistroDTO);
         return new ResponseEntity<>(usuarioPerfil, HttpStatus.CREATED);
     }
-
     //Endpoint para registrar psicologos
     @RequestMapping("/registro/psicologo")
     public ResponseEntity<UsuarioPerfilDTO> registroPsicologo(@Valid @RequestBody UsuarioRegistroDTO usuarioRegistroDTO) {
