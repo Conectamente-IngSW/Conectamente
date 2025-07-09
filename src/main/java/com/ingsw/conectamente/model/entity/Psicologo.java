@@ -25,7 +25,7 @@ public class Psicologo {
     @Column(name = "dni", nullable = false)
     private String dni;
 
-    @Column(name = "edad", nullable = false)
+    @Column(name = "edad")
     private Integer edad;
 
     @Column(name = "numero_colegiatura", nullable = false, unique = true)
