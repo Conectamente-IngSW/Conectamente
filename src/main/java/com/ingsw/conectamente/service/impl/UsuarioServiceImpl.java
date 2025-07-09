@@ -24,6 +24,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.UUID;
 
 import java.time.LocalDateTime;
 
@@ -118,6 +119,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setRol(rol);
 
         if(rolEnum == ERol.PACIENTE) {
+            if (registroDTO.getDni() == null || registroDTO.getDni().isBlank()) {
+                registroDTO.setDni("GOOGLE-" + UUID.randomUUID().toString());
+            }
             Paciente paciente = new Paciente();
             paciente.setNombre(registroDTO.getNombre());
             paciente.setApellido(registroDTO.getApellido());
